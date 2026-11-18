@@ -1,0 +1,9 @@
+[project]
+name = "spp"
+version = "0.1.0"
+description = "Self-Play Pretraining with Zero Data (arXiv:2609.30063) - reference implementation"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.3", "numpy>=1.24"]
+
+[tool.setuptools]
+packages = ["spp"]

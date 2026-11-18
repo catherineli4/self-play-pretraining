@@ -1,0 +1,23 @@
+{
+  "preset": "25m",
+  "ctx": 4096,
+  "rounds": 6560,
+  "n_programs": 1024,
+  "n_replay": 256,
+  "mut_frac": 0.125,
+  "max_program_len": 64,
+  "tape_size": 1024,
+  "step_budget": 65536,
+  "learner_lr": 0.001,
+  "gen_lr_ratio": 1.0,
+  "beta_kl": 0.05,
+  "warmup_rounds": 100,
+  "micro_batch": 16,
+  "reward_chunk": 8,
+  "eval_every": 50,
+  "eval_records": 256,
+  "icl_every": 500,
+  "icl_instances": 128,
+  "ckpt_every": 50,
+  "sample_every": 256
+}
