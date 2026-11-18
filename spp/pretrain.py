@@ -10,17 +10,23 @@ Protocols:
   * fixed budget (max_epochs > 0): exactly max_epochs passes over the (optionally prefix-capped)
     corpus, the cosine decay occupying the last decay_steps optimizer steps; max_epochs = 1 with
     corpus_tokens = N is a fresh-token run on the first N bytes with no repetition.
+
+Multi-GPU: launch with `torchrun --nproc_per_node K scripts/pretrain_natural.py ...`; the global batch
+(batch_size records) is split evenly across ranks, gradients are averaged by DDP, every rank evaluates the
+same validation set (so all ranks take the same decisions) and rank 0 logs, exports and reports.
 """
 from __future__ import annotations
 
 import json
 import math
+import os
 import time
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 
 import numpy as np
 import torch
+import torch.distributed as dist
 
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
@@ -86,13 +92,25 @@ def load_warm_start(model, path: str, device) -> dict:
 
 
 def run_pretraining(cfg: PretrainConfig) -> dict:
-    device = torch.device(cfg.device if torch.cuda.is_available() or cfg.device == "cpu" else "cpu")
+    world = int(os.environ.get("WORLD_SIZE", "1"))
+    rank = int(os.environ.get("RANK", "0"))
+    if world > 1:
+        dist.init_process_group("nccl")
+        local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+        torch.cuda.set_device(local_rank)
+        device = torch.device("cuda", local_rank)
+    else:
+        device = torch.device(cfg.device if torch.cuda.is_available() or cfg.device == "cpu" else "cpu")
+    is_main = rank == 0
+    if cfg.batch_size % world:
+        raise ValueError(f"batch_size {cfg.batch_size} must be divisible by the world size {world}")
     torch.manual_seed(cfg.seed)
     rng = np.random.default_rng(cfg.seed)
     out = Path(cfg.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     cfg_dict = asdict(cfg)
-    (out / "config.json").write_text(json.dumps(cfg_dict, indent=2))
+    if is_main:
+        (out / "config.json").write_text(json.dumps(cfg_dict, indent=2))
 
     # data: fixed records; validation either from a separate file or a held-out split
     data = load_byte_file(cfg.corpus)
@@ -124,16 +142,20 @@ def run_pretraining(cfg: PretrainConfig) -> dict:
         info["init"] = apply_init(model, cfg.init)
     opt = torch.optim.AdamW(model.parameters(), lr=cfg.lr, betas=(cfg.beta1, cfg.beta2), eps=cfg.adam_eps,
                             weight_decay=cfg.weight_decay)
+    net = torch.nn.parallel.DistributedDataParallel(model, device_ids=[device.index]) if world > 1 else model
+    info["world_size"] = world
 
     wb = None
-    if cfg.wandb_project:
+    if cfg.wandb_project and is_main:
         import wandb
         wb = wandb.init(project=cfg.wandb_project, name=cfg.wandb_name or out.name, group=cfg.wandb_group or None,
                         config={**cfg_dict, **info}, dir=str(out))
 
-    log_f = open(out / "log.jsonl", "a")
+    log_f = open(out / "log.jsonl", "a") if is_main else None
 
     def log(rec):
+        if not is_main:
+            return
         log_f.write(json.dumps(rec) + "\n")
         log_f.flush()
         if wb is not None:
@@ -151,11 +173,14 @@ def run_pretraining(cfg: PretrainConfig) -> dict:
     history.append({"step": 0, "tokens": 0, "val_bpb": bpb0, "phase": phase})
     log({"step": 0, "tokens": 0, "epoch_frac": 0.0, "val_bpb": bpb0, "lr": 0.0, "phase": phase, "epoch": 0})
     budget = f"{total_steps} steps ({cfg.max_epochs:g} epochs)" if total_steps else "until plateau"
-    print(f"[{out.name}] {info['arm']} {cfg.preset} params={info['n_params']:,} train_records={len(train)} "
-          f"({tokens_per_epoch/1e6:.0f}M tokens/epoch) val_records={len(val)} budget={budget} "
-          f"zero-shot val bpb {bpb0:.4f}", flush=True)
+    if is_main:
+        print(f"[{out.name}] {info['arm']} {cfg.preset} params={info['n_params']:,} train_records={len(train)} "
+              f"({tokens_per_epoch/1e6:.0f}M tokens/epoch) val_records={len(val)} budget={budget} "
+              f"world={world} zero-shot val bpb {bpb0:.4f}", flush=True)
 
     def export(path: Path):
+        if not is_main:
+            return
         torch.save({"learner": model.state_dict(), "model_cfg": model.cfg.to_dict(), "round": None, "tokens_seen": tokens,
                     "source": {"corpus": cfg.corpus, "arm": info["arm"], "warm_start": cfg.warm_start, "lr": cfg.lr,
                                "step": step}}, path)
@@ -182,21 +207,23 @@ def run_pretraining(cfg: PretrainConfig) -> dict:
             epoch += 1
         idx = order[pos:pos + cfg.batch_size]
         pos += cfg.batch_size
-        x = _records_to_batch(train[idx], device)
-        model.train()
+        x = _records_to_batch(train[idx[rank::world]], device)      # this rank's share of the global batch
+        net.train()
         opt.zero_grad(set_to_none=True)
         total = torch.zeros((), device=device)
         for s in range(0, x.shape[0], cfg.micro_batch):
             xb = x[s:s + cfg.micro_batch]
             with torch.autocast("cuda", dtype=torch.bfloat16, enabled=device.type == "cuda"):
-                logits = model(xb[:, :-1])
+                logits = net(xb[:, :-1])
             loss = per_sequence_cross_entropy(logits, xb[:, 1:]).sum() / x.shape[0]
             loss.backward()
             total += loss.detach()
+        if world > 1:
+            dist.all_reduce(total, op=dist.ReduceOp.AVG)
         gn = torch.nn.utils.clip_grad_norm_(model.parameters(), cfg.grad_clip)
         opt.step()
         step += 1
-        tokens += x.shape[0] * cfg.T
+        tokens += len(idx) * cfg.T
         while milestones and tokens >= milestones[0]:
             export(out / f"ckpt_tokens_{milestones.pop(0)/1e6:.0f}M.pt")
 
@@ -222,7 +249,8 @@ def run_pretraining(cfg: PretrainConfig) -> dict:
                     phase, decay_start, tokens_at_plateau = "decay", step, tokens
                     stop_reason = "plateau" if stall >= cfg.plateau_patience else "max_tokens"
                     rec["plateau"] = 1
-                    print(f"[{out.name}] plateau at step {step} ({tokens/1e6:.0f}M tokens), val bpb {bpb:.4f}; decaying", flush=True)
+                    if is_main:
+                        print(f"[{out.name}] plateau at step {step} ({tokens/1e6:.0f}M tokens), val bpb {bpb:.4f}; decaying", flush=True)
             if decay_done:
                 converged_bpb = bpb
         if rec is not None:
@@ -233,13 +261,19 @@ def run_pretraining(cfg: PretrainConfig) -> dict:
     result = {**info, "zero_shot_bpb": bpb0, "best_constant_bpb": best, "converged_bpb": converged_bpb,
               "stop_reason": stop_reason, "tokens_at_plateau": tokens_at_plateau, "tokens_total": tokens,
               "steps": step, "epochs": epoch, "wall_s": time.time() - t0, "config": cfg_dict, "history": history}
-    (out / "results.json").write_text(json.dumps(result, indent=2))
+    if is_main:
+        (out / "results.json").write_text(json.dumps(result, indent=2))
     if cfg.save_final:
         export(out / "ckpt_final.pt")
     if wb is not None:
         wb.summary.update({k: v for k, v in result.items() if k not in ("config", "history")})
         wb.finish()
-    log_f.close()
-    print(f"[{out.name}] final bpb {converged_bpb:.4f} after {tokens/1e6:.0f}M tokens "
-          f"({tokens/tokens_per_epoch:.2f} epochs, stop: {stop_reason}), {time.time()-t0:.0f}s", flush=True)
+    if log_f is not None:
+        log_f.close()
+    if is_main:
+        print(f"[{out.name}] final bpb {converged_bpb:.4f} after {tokens/1e6:.0f}M tokens "
+              f"({tokens/tokens_per_epoch:.2f} epochs, stop: {stop_reason}), {time.time()-t0:.0f}s", flush=True)
+    if world > 1:
+        dist.barrier()
+        dist.destroy_process_group()
     return result

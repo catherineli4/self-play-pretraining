@@ -127,6 +127,11 @@ plain text have download helpers. Epiplexity (Sec. 3.1) is not implemented.
 - `scripts/sweep_fresh.py` + `scripts/run_fresh_epoch.sh`: the single-epoch comparison on 1B and 2B fresh
   DCLM bytes (`scripts/prepare_data.py dclm --mb_per_shard 200 --local_shards 0,1,2` builds the 2B stream,
   `--local_shards 9` a disjoint validation stream); `scripts/collect_fresh.py` summarises.
+- `scripts/run_25m_pipeline.sh`: the 25m study (self-play with checkpoints every 50 rounds, the Rethinking
+  Pre-pretraining curricula `spp/synthetic.py` as pre-pretraining baselines, and the fresh-DCLM downstream
+  comparison); `scripts/run_matched_compute.sh` adds compute-matched from-scratch baselines trained on as many
+  fresh DCLM tokens as self-play consumed synthetically (3.05B, 4.1B, 36.4B; the last with 4-GPU DDP, which
+  `scripts/pretrain_natural.py` supports under `torchrun`).
 - `scripts/bootstrap_instance.sh`: recovers a fresh or preempted spot VM (local-SSD RAID, NVIDIA module via
   dkms for the running kernel, conda env with torch 2.8, data and checkpoints from GCS). Everything durable
   is mirrored to `gs://cmu-gpucloud-catheri4/self-play-pretraining/` (checkpoints every 100 rounds, logs,

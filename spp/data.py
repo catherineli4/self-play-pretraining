@@ -5,6 +5,8 @@ from __future__ import annotations
 import math
 from pathlib import Path
 
+import os
+
 import numpy as np
 import torch
 
@@ -25,8 +27,13 @@ def records_from_bytes(data: np.ndarray | bytes, record_len: int, max_records: i
     return arr[: n * record_len].reshape(n, record_len)
 
 
-def load_byte_file(path: str | Path) -> np.ndarray:
-    return np.fromfile(str(path), dtype=np.uint8)
+def load_byte_file(path: str | Path, mmap: bool | None = None) -> np.ndarray:
+    """Raw bytes of a file. Files over 4 GB (or mmap=True) are memory-mapped read-only, so several
+    processes on one machine share the page cache instead of each holding a copy."""
+    path = str(path)
+    if mmap or (mmap is None and os.path.getsize(path) > 4e9):
+        return np.memmap(path, dtype=np.uint8, mode="r")
+    return np.fromfile(path, dtype=np.uint8)
 
 
 def random_bytes_records(n: int, record_len: int, seed: int = 0) -> np.ndarray:
