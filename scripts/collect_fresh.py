@@ -10,7 +10,7 @@ from pathlib import Path
 
 NAME = re.compile(r"^(?P<budget>[^_]+)_(?P<arm>.+)_lr(?P<lr>[^_]+)_wd(?P<wd>[^_]+)$")
 FRACS = (0.1, 0.25, 0.5, 0.75, 1.0)
-THRESH = (2.5, 2.2, 2.0, 1.9, 1.8, 1.75)
+THRESH = (2.5, 2.2, 2.0, 1.9, 1.8, 1.75)   # overridable with --thresholds
 
 
 def curve(run_dir: Path):
@@ -26,7 +26,11 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("out_root")
     p.add_argument("--csv", default="")
+    p.add_argument("--thresholds", default="", help="comma-separated bpb thresholds for the tokens-to columns")
     a = p.parse_args()
+    global THRESH
+    if a.thresholds:
+        THRESH = tuple(float(x) for x in a.thresholds.split(","))
     rows, groups = [], defaultdict(list)
     for res in sorted(Path(a.out_root).glob("*/results.json")):
         m = NAME.match(res.parent.name)
