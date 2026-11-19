@@ -132,6 +132,9 @@ plain text have download helpers. Epiplexity (Sec. 3.1) is not implemented.
   comparison); `scripts/run_matched_compute.sh` adds compute-matched from-scratch baselines trained on as many
   fresh DCLM tokens as self-play consumed synthetically (3.05B, 4.1B, 36.4B; the last with 4-GPU DDP, which
   `scripts/pretrain_natural.py` supports under `torchrun`); results in `results/25m/matched_compute.md`.
+- `--tangent_precond identity` (`identity_preconditioner` in `spp/reward.py`): the learning-progress reward without the
+  AdamW step operator (tangent theta_past - theta_e). `scripts/run_reward_variant_1m.sh` runs the 1m ablation (4096 rounds
+  on 8 GPUs, then the fresh-DCLM warm-start sweep of its checkpoints); results in `results/1m_reward_variant/summary.md`.
 - `scripts/bootstrap_instance.sh`: recovers a fresh or preempted spot VM (local-SSD RAID, NVIDIA module via
   dkms for the running kernel, conda env with torch 2.8, data and checkpoints from GCS). Everything durable
   is mirrored to `gs://cmu-gpucloud-catheri4/self-play-pretraining/` (checkpoints every 100 rounds, logs,
