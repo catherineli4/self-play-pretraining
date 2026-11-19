@@ -1,5 +1,8 @@
 | budget | arm | best lr | best wd | zero-shot | bpb @10% | bpb @25% | bpb @50% | bpb @75% | bpb @100% | final (after decay) | tokens to 2.0 | tokens to 1.7 | tokens to 1.6 | tokens to 1.5 | tokens to 1.45 | tokens to 1.4 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 36.4B | scratch_std0.02 | 0.001 | 0.1 | 8.341 | 1.397 | 1.359 | 1.336 | 1.324 | 1.289 | **1.2891** | 157M | 314M | 472M | 996M | 1677M | 3512M |
+| 4.1B | scratch_std0.02 | 0.001 | 0.1 | 8.341 | 1.635 | 1.492 | 1.429 | 1.401 | 1.357 | **1.3566** | 157M | 314M | 472M | 970M | 1599M | 3145M |
+| 3.05B | scratch_std0.02 | 0.001 | 0.1 | 8.341 | 1.718 | 1.521 | 1.450 | 1.420 | 1.374 | **1.3742** | 157M | 314M | 472M | 943M | 1520M | 3014M |
 | 2B | declref_2B | 0.003 | 0.1 | 13.165 | 1.717 | 1.525 | 1.452 | 1.422 | 1.360 | **1.3596** | 105M | 210M | 314M | 629M | 1022M | 1966M |
 | 2B | kdyck_2B | 0.003 | 0.1 | 7.185 | 1.784 | 1.585 | 1.510 | 1.478 | 1.415 | **1.4149** | 131M | 262M | 446M | 1153M | 1992M | - |
 | 2B | nca_2B | 0.003 | 0.1 | 30.316 | 1.976 | 1.590 | 1.500 | 1.464 | 1.399 | **1.3989** | 183M | 314M | 498M | 996M | 1782M | 2000M |
@@ -17,5 +20,5 @@
 | 1B | sp_2B | 0.003 | 0.1 | 7.788 | 2.082 | 1.640 | 1.534 | 1.492 | 1.424 | **1.4244** | 105M | 183M | 314M | 708M | 996M | - |
 | 1B | sp_final | 0.003 | 0.1 | 5.821 | 1.788 | 1.610 | 1.525 | 1.486 | 1.420 | **1.4203** | 52M | 131M | 262M | 629M | 996M | - |
 
-32 runs. Columns '@x%' = best validation bpb seen within the first x% of the epoch; 'tokens to' = fresh tokens consumed when validation bpb first reached the threshold.
-wrote /mnt/localssd/spp-pp25m/results.csv
+37 runs. Columns '@x%' = best validation bpb seen within the first x% of the epoch; 'tokens to' = fresh tokens consumed when validation bpb first reached the threshold.
+wrote /home/catherine/tmp/claude-1006/-home-catherine/b4feae81-ac82-4b40-b632-0ecc4c3f3713/scratchpad/results25m.csv

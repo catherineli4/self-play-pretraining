@@ -131,7 +131,7 @@ plain text have download helpers. Epiplexity (Sec. 3.1) is not implemented.
   Pre-pretraining curricula `spp/synthetic.py` as pre-pretraining baselines, and the fresh-DCLM downstream
   comparison); `scripts/run_matched_compute.sh` adds compute-matched from-scratch baselines trained on as many
   fresh DCLM tokens as self-play consumed synthetically (3.05B, 4.1B, 36.4B; the last with 4-GPU DDP, which
-  `scripts/pretrain_natural.py` supports under `torchrun`).
+  `scripts/pretrain_natural.py` supports under `torchrun`); results in `results/25m/matched_compute.md`.
 - `scripts/bootstrap_instance.sh`: recovers a fresh or preempted spot VM (local-SSD RAID, NVIDIA module via
   dkms for the running kernel, conda env with torch 2.8, data and checkpoints from GCS). Everything durable
   is mirrored to `gs://cmu-gpucloud-catheri4/self-play-pretraining/` (checkpoints every 100 rounds, logs,
