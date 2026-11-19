@@ -269,3 +269,37 @@ Training dynamics of the three runs over the same 4096 rounds.
 Warm-start value: final bpb per arm and the tail of the validation curves at both budgets.
 
 ![Warm-start value: final bpb per arm and the tail of the validation curves at both budgets.](1m_generator_variant/downstream.svg)
+
+## 1m_mutation_variant
+
+Ablation at 1m: no mutations (`--mut_frac 0`, run `sp_1m_nomut_seed0`, 4096 rounds; all 1024 programs per round are fresh generator samples), against the baseline and the two earlier 1m ablations at matching rounds (`results/1m_mutation_variant`).
+
+### zero shot heldout
+
+Held-out DCLM and Metamath bpb for the baseline and the three 1m ablations.
+
+![Held-out DCLM and Metamath bpb for the baseline and the three 1m ablations.](1m_mutation_variant/zero_shot_heldout.svg)
+
+### arithmetic and icl
+
+Arithmetic and random-byte bpb and ICL accuracy at 32 shots, four runs.
+
+![Arithmetic and random-byte bpb and ICL accuracy at 32 shots, four runs.](1m_mutation_variant/arithmetic_and_icl.svg)
+
+### dynamics
+
+Training dynamics of the four runs over the same 4096 rounds.
+
+![Training dynamics of the four runs over the same 4096 rounds.](1m_mutation_variant/dynamics.svg)
+
+### generator pg
+
+Importance ratios, PG loss and generator gradient norm: the huge ratios in the baseline come from replayed mutation programs.
+
+![Importance ratios, PG loss and generator gradient norm: the huge ratios in the baseline come from replayed mutation programs.](1m_mutation_variant/generator_pg.svg)
+
+### downstream
+
+Warm-start value: final bpb per arm and the tail of the validation curves at both budgets.
+
+![Warm-start value: final bpb per arm and the tail of the validation curves at both budgets.](1m_mutation_variant/downstream.svg)

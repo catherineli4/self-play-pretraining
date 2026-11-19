@@ -142,6 +142,7 @@ plain text have download helpers. Epiplexity (Sec. 3.1) is not implemented.
   results in `results/1m_generator_variant/summary.md`.
 - `--mut_frac 0` (existing flag): no mutations; all 1024 programs per round are fresh generator samples.
   `scripts/run_mut_variant_1m.sh` runs the 1m ablation (4096 rounds, then the fresh-DCLM warm-start sweep).
+  results in `results/1m_mutation_variant/summary.md`.
 - `scripts/plot_results.py` draws every results figure as SVG into `results/plots/<experiment>/` (dependency-free, via
   `scripts/svgchart.py`) with an index in `results/plots/README.md`.
 - `scripts/bootstrap_instance.sh`: recovers a fresh or preempted spot VM (local-SSD RAID, NVIDIA module via

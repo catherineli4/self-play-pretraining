@@ -19,6 +19,8 @@ The 25m pipeline (`scripts/run_25m_pipeline.sh`) writes its results to `gs://...
   `25m/reward_variant.md` is the same ablation at 25m for the full schedule.
 - `1m_generator_variant/`: ablation where the generator is updated on its own fresh samples only (no policy-gradient or
   expert-iteration fine-tuning on replayed or mutated programs from earlier rounds), 1m, 4096 rounds.
+- `1m_mutation_variant/`: ablation with no mutations (`--mut_frac 0`; all 1024 non-replay programs per round are fresh
+  generator samples), 1m, 4096 rounds; also shows that the baseline's e^20 importance ratios come from replayed mutants.
 - `plots/`: every figure as SVG, grouped by experiment (`plots/README.md` lists them with captions; `plots/index.html`
   shows them all on one page). Regenerate with `python scripts/plot_results.py`; the training-dynamics and
   validation-curve figures need the local run logs, the rest come from the files in this directory.

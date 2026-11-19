@@ -517,6 +517,59 @@ def group_1m_generator_variant(runs, pp1m):
         save(fig, g, "downstream.svg", "Warm-start value: final bpb per arm and the tail of the validation curves at both budgets.")
 
 
+def group_1m_mutation_variant(runs, pp1m):
+    g = "1m_mutation_variant"
+    desc = ("Ablation at 1m: no mutations (`--mut_frac 0`, run `sp_1m_nomut_seed0`, 4096 rounds; all 1024 programs per round are fresh "
+            "generator samples), against the baseline and the two earlier 1m ablations at matching rounds (`results/1m_mutation_variant`).")
+    NOMUT = "no mutations"
+    H = {"baseline": jsonl(RES / "1m_reward_variant" / "sp_1m_seed0_eval_curve_heldout256.jsonl"),
+         "no step operator": jsonl(RES / "1m_reward_variant" / "sp_1m_rawdelta_seed0_eval_curve_heldout256.jsonl"),
+         "generator on fresh only": jsonl(RES / "1m_generator_variant" / "sp_1m_genfresh_seed0_eval_curve_heldout256.jsonl"),
+         NOMUT: jsonl(RES / "1m_mutation_variant" / "sp_1m_nomut_seed0_eval_curve_heldout256.jsonl")}
+    if not H[NOMUT]:
+        return skip(g, "*", "no held-out eval curve for sp_1m_nomut_seed0")
+    cols = {"baseline": BLUE, "no step operator": ORANGE, "generator on fresh only": AQUA, NOMUT: YELLOW}
+    fig = sc.Figure("1m mutation ablation: zero-shot transfer, held-out records", "last 256 records of each file, every 100 rounds up to 4100; thin = raw, thick = 5-checkpoint moving average", ncols=2, panel_w=470)
+    for key, name in (("eval/dclm_bpb", "DCLM"), ("eval/metamath_bpb", "Metamath")):
+        eval_panel(fig, name, [(l, *series(r, key, 4100), cols[l], None) for l, r in H.items()])
+    save(fig, g, "zero_shot_heldout.svg", "Held-out DCLM and Metamath bpb for the baseline and the three 1m ablations.", desc)
+    L = {"baseline": jsonl(runs / "sp_1m_seed0" / "log.jsonl"), "no step operator": jsonl(runs / "sp_1m_rawdelta_seed0" / "log.jsonl"),
+         "generator on fresh only": jsonl(runs / "sp_1m_genfresh_seed0" / "log.jsonl"), NOMUT: jsonl(runs / "sp_1m_nomut_seed0" / "log.jsonl")}
+    if all(L.values()):
+        rr = [(l, r, cols[l]) for l, r in L.items()]
+        fig = sc.Figure("1m mutation ablation: arithmetic and in-context learning", "trainer evals every 100 rounds (arithmetic, log axis) and ICL accuracy at 32 shots every 500 rounds, up to round 4100", ncols=4, panel_w=330, panel_h=230)
+        eval_panel(fig, "Arithmetic (log)", [(l, *series(r, "eval/arithmetic_bpb", 4100), c, None) for l, r, c in rr], ylog=True)
+        eval_panel(fig, "Random bytes", [(l, *series(r, "eval/random_bytes_bpb", 4100), c, None) for l, r, c in rr])
+        for t in ICL_TASKS:
+            p = fig.add(sc.Panel(f"ICL: {ICL_NAMES[t]}, 32 shots", "round", "accuracy ↑", ylim=(0, 1.02)))
+            for l, r, c in rr:
+                xs, ys = series([x for x in r if f"icl/{t}/m32" in x], f"icl/{t}/m32", 4100)
+                p.line(xs, ys, label=l, color=c, marker=True)
+        save(fig, g, "arithmetic_and_icl.svg", "Arithmetic and random-byte bpb and ICL accuracy at 32 shots, four runs.")
+        save(dynamics_fig("1m mutation ablation: training dynamics", "50-round moving averages, rounds 0 to 4096", rr, max_round=4096),
+             g, "dynamics.svg", "Training dynamics of the four runs over the same 4096 rounds.")
+        save(dynamics_fig("1m mutation ablation: the generator's policy-gradient term", "50-round moving averages, log axes", rr, max_round=4096,
+                          keys=[("gen/rho_mean", "Mean importance ratio, PG rows (log)", True), ("gen/loss_pg", "Generator PG loss (signed)", False),
+                                ("gen/grad_norm", "Generator gradient norm before clipping (log)", True), ("reward/fresh_mean", "Reward mean, fresh programs (log)", True)]),
+             g, "generator_pg.svg", "Importance ratios, PG loss and generator gradient norm: the huge ratios in the baseline come from replayed mutation programs.")
+    else:
+        skip(g, "arithmetic_and_icl/dynamics", "no local logs")
+    rows = csv_rows(RES / "1m_prepretraining_fresh" / "results.csv")
+    arms = [("scratch_std0.02", "scratch, std 0.02", GRAY, None), ("warm_r2800", "baseline round 2800", BLUE, "6 4"), ("warm_r4100", "baseline round 4100", BLUE, None),
+            ("warm_rawdelta_r4096", "no step operator, round 4096", ORANGE, None), ("warm_genfresh_r4096", "generator on fresh only, round 4096", AQUA, None),
+            ("warm_nomut_r2800", "no mutations, round 2800", YELLOW, "6 4"), ("warm_nomut_r4096", "no mutations, round 4096", YELLOW, None)]
+    if rows and best_row(rows, "2B", "warm_nomut_r4096"):
+        fig = sc.Figure("1m mutation ablation: warm-start value on fresh DCLM", "best LR x WD per arm; left: final bpb; right: last 60% of the epoch at each budget", ncols=3, panel_w=400, panel_h=300)
+        p = fig.add(sc.Panel("Final bpb", "final validation bpb ↓", xfmt=lambda v: f"{v:.3f}"))
+        for b, col in (("1B", BLUE), ("2B", ORANGE)):
+            p.dots([l for _, l, *_ in arms], [float(best_row(rows, b, a)["final"]) if best_row(rows, b, a) else None for a, *_ in arms], label=f"{b} fresh tokens", color=col)
+        sub = [arms[0], arms[2], arms[3], arms[4], arms[6]]
+        if sweep_curve(pp1m, best_row(rows, "2B", "warm_r4100")["name"])[0]:
+            curves_panel(fig, "2B budget, last 60%", pp1m, rows, "2B", sub, (1.65, 1.85), frac_from=0.4)
+            curves_panel(fig, "1B budget, last 60%", pp1m, rows, "1B", sub, (1.68, 1.9), frac_from=0.4)
+        save(fig, g, "downstream.svg", "Warm-start value: final bpb per arm and the tail of the validation curves at both budgets.")
+
+
 def group_overview():
     g = "overview"
     desc = "Cross-experiment summaries."
@@ -549,7 +602,7 @@ def group_overview():
 
 def write_index(out):
     out = Path(out)
-    order = ["overview", "1m_replication", "1m_prepretraining_plateau", "1m_prepretraining_fresh", "25m_study", "1m_reward_variant", "25m_reward_variant", "1m_generator_variant"]
+    order = ["overview", "1m_replication", "1m_prepretraining_plateau", "1m_prepretraining_fresh", "25m_study", "1m_reward_variant", "25m_reward_variant", "1m_generator_variant", "1m_mutation_variant"]
     md = ["# Plots", "", "Generated by `scripts/plot_results.py` from the files in `results/` and the local run logs. SVG, one file per figure, grouped by experiment.", "", "Axis labels carry ↓ when lower is better (bits per byte, tokens to a threshold) and ↑ when higher is better (accuracy, improvement over scratch). The training-dynamics panels are descriptive and carry neither.", ""]
     html = ["<!doctype html><meta charset='utf-8'><title>self-play pretraining: plots</title>",
             "<style>body{font-family:system-ui,sans-serif;max-width:1500px;margin:24px auto;padding:0 16px;color:#0b0b0b;background:#f9f9f7}h2{margin-top:40px}figure{margin:16px 0}figcaption{color:#52514e;font-size:14px;margin-top:4px}img{max-width:100%;background:#fcfcfb}</style>",
@@ -585,6 +638,7 @@ def main():
     group_1m_reward_variant(runs, ARGS.pp1m)
     group_25m_reward_variant(runs, ARGS.pp25m)
     group_1m_generator_variant(runs, ARGS.pp1m)
+    group_1m_mutation_variant(runs, ARGS.pp1m)
     write_index(ARGS.out)
 
 
