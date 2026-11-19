@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="988" height="266" viewBox="0 0 988 266" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="988" height="266" fill="#fcfcfb"/>
+<text x="16" y="20" font-size="15" font-weight="600" fill="#0b0b0b">1m fresh-token protocol: sensitivity to LR and weight decay</text>
+<text x="16" y="37" font-size="11.5" fill="#52514e">final validation bpb; darker = lower (better)</text>
+<text x="16.0" y="59.0" font-size="13" font-weight="600" fill="#0b0b0b">1B fresh tokens</text>
+<text x="228.1" y="224.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.003, 0</text>
+<text x="297.8" y="224.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.003, 0.1</text>
+<text x="367.5" y="224.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.01, 0</text>
+<text x="437.2" y="224.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.01, 0.1</text>
+<text x="185.2" y="91.6" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.02</text>
+<rect x="194.2" y="75.0" width="67.7" height="25.2" rx="3" fill="#3987e5"/>
+<text x="228.1" y="91.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.887</text>
+<rect x="263.9" y="75.0" width="67.7" height="25.2" rx="3" fill="#3987e5"/>
+<text x="297.8" y="91.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.908</text>
+<rect x="333.6" y="75.0" width="67.7" height="25.2" rx="3" fill="#5598e7"/>
+<text x="367.5" y="91.6" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.942</text>
+<rect x="403.3" y="75.0" width="67.7" height="25.2" rx="3" fill="#1c5cab"/>
+<text x="437.2" y="91.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.804</text>
+<text x="185.2" y="118.8" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.005</text>
+<rect x="194.2" y="102.2" width="67.7" height="25.2" rx="3" fill="#5598e7"/>
+<text x="228.1" y="118.8" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.914</text>
+<rect x="263.9" y="102.2" width="67.7" height="25.2" rx="3" fill="#256abf"/>
+<text x="297.8" y="118.8" font-size="10.5" fill="#ffffff" text-anchor="middle">1.850</text>
+<rect x="333.6" y="102.2" width="67.7" height="25.2" rx="3" fill="#cde2fb"/>
+<text x="367.5" y="118.8" font-size="10.5" fill="#0b0b0b" text-anchor="middle">2.081</text>
+<rect x="403.3" y="102.2" width="67.7" height="25.2" rx="3" fill="#5598e7"/>
+<text x="437.2" y="118.8" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.937</text>
+<text x="185.2" y="146.0" font-size="11" fill="#52514e" text-anchor="end">self-play final (round 8192)</text>
+<rect x="194.2" y="129.4" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="228.1" y="146.0" font-size="10.5" fill="#ffffff" text-anchor="middle">1.747</text>
+<rect x="263.9" y="129.4" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="297.8" y="146.0" font-size="10.5" fill="#ffffff" text-anchor="middle">1.742</text>
+<rect x="333.6" y="129.4" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="367.5" y="146.0" font-size="10.5" fill="#ffffff" text-anchor="middle">1.714</text>
+<rect x="403.3" y="129.4" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="437.2" y="146.0" font-size="10.5" fill="#ffffff" text-anchor="middle">1.722</text>
+<text x="185.2" y="173.2" font-size="11" fill="#52514e" text-anchor="end">self-play round 2800</text>
+<rect x="194.2" y="156.6" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="228.1" y="173.2" font-size="10.5" fill="#ffffff" text-anchor="middle">1.739</text>
+<rect x="263.9" y="156.6" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="297.8" y="173.2" font-size="10.5" fill="#ffffff" text-anchor="middle">1.737</text>
+<rect x="333.6" y="156.6" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="367.5" y="173.2" font-size="10.5" fill="#ffffff" text-anchor="middle">1.714</text>
+<rect x="403.3" y="156.6" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="437.2" y="173.2" font-size="10.5" fill="#ffffff" text-anchor="middle">1.726</text>
+<text x="185.2" y="200.4" font-size="11" fill="#52514e" text-anchor="end">self-play round 4100</text>
+<rect x="194.2" y="183.8" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="228.1" y="200.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.740</text>
+<rect x="263.9" y="183.8" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="297.8" y="200.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.737</text>
+<rect x="333.6" y="183.8" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="367.5" y="200.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.712</text>
+<rect x="403.3" y="183.8" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="437.2" y="200.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.724</text>
+<text x="332.6" y="240.0" font-size="11" fill="#52514e" text-anchor="middle">learning rate, weight decay</text>
+<text x="502.0" y="59.0" font-size="13" font-weight="600" fill="#0b0b0b">2B fresh tokens</text>
+<text x="714.1" y="224.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.003, 0</text>
+<text x="783.8" y="224.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.003, 0.1</text>
+<text x="853.5" y="224.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.01, 0</text>
+<text x="923.2" y="224.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.01, 0.1</text>
+<text x="671.2" y="91.6" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.02</text>
+<rect x="680.2" y="75.0" width="67.7" height="25.2" rx="3" fill="#3987e5"/>
+<text x="714.1" y="91.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.804</text>
+<rect x="749.9" y="75.0" width="67.7" height="25.2" rx="3" fill="#9ec5f4"/>
+<text x="783.8" y="91.6" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.869</text>
+<rect x="819.6" y="75.0" width="67.7" height="25.2" rx="3" fill="#86b6ef"/>
+<text x="853.5" y="91.6" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.856</text>
+<rect x="889.3" y="75.0" width="67.7" height="25.2" rx="3" fill="#1c5cab"/>
+<text x="923.2" y="91.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.751</text>
+<text x="671.2" y="118.8" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.005</text>
+<rect x="680.2" y="102.2" width="67.7" height="25.2" rx="3" fill="#256abf"/>
+<text x="714.1" y="118.8" font-size="10.5" fill="#ffffff" text-anchor="middle">1.759</text>
+<rect x="749.9" y="102.2" width="67.7" height="25.2" rx="3" fill="#1c5cab"/>
+<text x="783.8" y="118.8" font-size="10.5" fill="#ffffff" text-anchor="middle">1.739</text>
+<rect x="819.6" y="102.2" width="67.7" height="25.2" rx="3" fill="#cde2fb"/>
+<text x="853.5" y="118.8" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.917</text>
+<rect x="889.3" y="102.2" width="67.7" height="25.2" rx="3" fill="#256abf"/>
+<text x="923.2" y="118.8" font-size="10.5" fill="#ffffff" text-anchor="middle">1.755</text>
+<text x="671.2" y="146.0" font-size="11" fill="#52514e" text-anchor="end">self-play final (round 8192)</text>
+<rect x="680.2" y="129.4" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="714.1" y="146.0" font-size="10.5" fill="#ffffff" text-anchor="middle">1.704</text>
+<rect x="749.9" y="129.4" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="783.8" y="146.0" font-size="10.5" fill="#ffffff" text-anchor="middle">1.701</text>
+<rect x="819.6" y="129.4" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="853.5" y="146.0" font-size="10.5" fill="#ffffff" text-anchor="middle">1.685</text>
+<rect x="889.3" y="129.4" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="923.2" y="146.0" font-size="10.5" fill="#ffffff" text-anchor="middle">1.700</text>
+<text x="671.2" y="173.2" font-size="11" fill="#52514e" text-anchor="end">self-play round 2800</text>
+<rect x="680.2" y="156.6" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="714.1" y="173.2" font-size="10.5" fill="#ffffff" text-anchor="middle">1.703</text>
+<rect x="749.9" y="156.6" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="783.8" y="173.2" font-size="10.5" fill="#ffffff" text-anchor="middle">1.703</text>
+<rect x="819.6" y="156.6" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="853.5" y="173.2" font-size="10.5" fill="#ffffff" text-anchor="middle">1.687</text>
+<rect x="889.3" y="156.6" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="923.2" y="173.2" font-size="10.5" fill="#ffffff" text-anchor="middle">1.703</text>
+<text x="671.2" y="200.4" font-size="11" fill="#52514e" text-anchor="end">self-play round 4100</text>
+<rect x="680.2" y="183.8" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="714.1" y="200.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.702</text>
+<rect x="749.9" y="183.8" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="783.8" y="200.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.701</text>
+<rect x="819.6" y="183.8" width="67.7" height="25.2" rx="3" fill="#0d366b"/>
+<text x="853.5" y="200.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.686</text>
+<rect x="889.3" y="183.8" width="67.7" height="25.2" rx="3" fill="#104281"/>
+<text x="923.2" y="200.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.703</text>
+<text x="818.6" y="240.0" font-size="11" fill="#52514e" text-anchor="middle">learning rate, weight decay</text>
+</svg>

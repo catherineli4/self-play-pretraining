@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="988" height="658" viewBox="0 0 988 658" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="988" height="658" fill="#fcfcfb"/>
+<text x="16" y="20" font-size="15" font-weight="600" fill="#0b0b0b">25m downstream: validation curves, 1B budget</text>
+<text x="16" y="37" font-size="11.5" fill="#52514e">best LR per arm; top row: whole epoch, bottom row: last 60% with a tight axis</text>
+<text x="16.0" y="59.0" font-size="13" font-weight="600" fill="#0b0b0b">Self-play warm starts vs scratch</text>
+<line x1="16.0" y1="76.0" x2="32.0" y2="76.0" stroke="#898781" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="80.0" font-size="11" fill="#52514e">scratch, std 0.02 (lr 0.001, wd 0.1)</text>
+<line x1="16.0" y1="92.0" x2="32.0" y2="92.0" stroke="#2a78d6" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="96.0" font-size="11" fill="#52514e">self-play round 200 (1.05B synthetic) (lr 0.001, wd 0.1)</text>
+<line x1="16.0" y1="108.0" x2="32.0" y2="108.0" stroke="#1baf7a" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="112.0" font-size="11" fill="#52514e">self-play round 400 (2.1B) (lr 0.003, wd 0.1)</text>
+<line x1="16.0" y1="124.0" x2="32.0" y2="124.0" stroke="#6250d6" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="128.0" font-size="11" fill="#52514e">self-play final, round 6560 (34.4B) (lr 0.003, wd 0.1)</text>
+<line x1="74.0" y1="278.4" x2="472.0" y2="278.4" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="281.9" font-size="10.5" fill="#898781" text-anchor="end">1.4</text>
+<line x1="74.0" y1="243.3" x2="472.0" y2="243.3" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="246.8" font-size="10.5" fill="#898781" text-anchor="end">1.6</text>
+<line x1="74.0" y1="208.2" x2="472.0" y2="208.2" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="211.7" font-size="10.5" fill="#898781" text-anchor="end">1.8</text>
+<line x1="74.0" y1="173.1" x2="472.0" y2="173.1" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="176.6" font-size="10.5" fill="#898781" text-anchor="end">2</text>
+<line x1="74.0" y1="138.0" x2="472.0" y2="138.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="141.5" font-size="10.5" fill="#898781" text-anchor="end">2.2</text>
+<text x="92.1" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">0</text>
+<text x="164.5" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">200M</text>
+<text x="236.8" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">400M</text>
+<text x="309.2" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">600M</text>
+<text x="381.6" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">800M</text>
+<text x="454.0" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">1B</text>
+<line x1="74.0" y1="296.0" x2="472.0" y2="296.0" stroke="#c3c2b7" stroke-width="1"/>
+<text x="273.0" y="326.0" font-size="11" fill="#52514e" text-anchor="middle">fresh DCLM tokens</text>
+<text transform="translate(28.0,217.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">validation bpb</text>
+<clipPath id="c33633429"><rect x="68.0" y="132.0" width="410.0" height="170.0"/></clipPath>
+<g clip-path="url(#c33633429)">
+<path d="M92.1,-940.0 L101.6,-34.7 L111.1,92.7 L120.5,135.6 L130.0,155.4 L139.5,171.0 L149.0,180.9 L158.5,190.3 L168.0,198.6 L177.4,209.7 L186.9,218.5 L196.4,223.6 L205.9,228.7 L215.4,232.8 L224.9,236.8 L234.4,240.3 L243.8,242.7 L253.3,243.8 L262.8,246.1 L272.3,247.8 L281.8,249.7 L291.3,250.5 L300.7,252.0 L310.2,253.1 L319.7,254.6 L329.2,255.4 L338.7,256.2 L348.2,257.2 L357.6,258.1 L367.1,258.8 L376.6,259.7 L386.1,260.5 L395.6,260.9 L405.1,261.9 L414.6,262.3 L424.0,262.9 L433.5,263.6 L443.0,266.1 L452.5,270.7 L453.9,270.7" fill="none" stroke="#898781" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M92.1,-835.3 L101.6,-22.0 L111.1,116.3 L120.5,152.5 L130.0,179.1 L139.5,205.9 L149.0,217.0 L158.5,224.6 L168.0,230.0 L177.4,234.7 L186.9,238.1 L196.4,240.8 L205.9,243.4 L215.4,245.9 L224.9,247.9 L234.4,250.0 L243.8,250.7 L253.3,252.4 L262.8,254.1 L272.3,255.3 L281.8,256.7 L291.3,257.8 L300.7,259.0 L310.2,259.8 L319.7,261.0 L329.2,261.5 L338.7,262.2 L348.2,263.2 L357.6,264.1 L367.1,264.8 L376.6,265.4 L386.1,265.8 L395.6,266.5 L405.1,267.1 L414.6,267.3 L424.0,268.1 L433.5,268.5 L443.0,271.1 L452.5,275.3 L453.9,275.4" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M92.1,-843.0 L101.6,0.9 L111.1,124.2 L120.5,158.7 L130.0,199.0 L139.5,214.0 L149.0,222.2 L158.5,228.5 L168.0,232.7 L177.4,236.4 L186.9,239.7 L196.4,241.5 L205.9,244.7 L215.4,246.2 L224.9,248.4 L234.4,250.1 L243.8,251.6 L253.3,252.2 L262.8,253.5 L272.3,254.9 L281.8,256.2 L291.3,256.9 L300.7,258.2 L310.2,258.7 L319.7,259.7 L329.2,260.1 L338.7,260.5 L348.2,261.5 L357.6,262.2 L367.1,262.8 L376.6,263.1 L386.1,263.7 L395.6,264.4 L405.1,264.7 L414.6,265.0 L424.0,265.8 L433.5,265.6 L443.0,268.9 L452.5,274.1 L453.9,274.2" fill="none" stroke="#1baf7a" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M92.1,-497.8 L101.6,139.5 L111.1,190.7 L120.5,210.4 L130.0,220.2 L139.5,227.1 L149.0,231.8 L158.5,235.8 L168.0,239.1 L177.4,241.6 L186.9,244.2 L196.4,246.2 L205.9,248.0 L215.4,249.7 L224.9,251.2 L234.4,252.9 L243.8,254.0 L253.3,254.9 L262.8,255.8 L272.3,256.5 L281.8,257.8 L291.3,258.4 L300.7,259.6 L310.2,260.2 L319.7,260.9 L329.2,261.4 L338.7,261.9 L348.2,262.5 L357.6,263.4 L367.1,263.7 L376.6,264.2 L386.1,264.4 L395.6,265.3 L405.1,265.5 L414.6,265.9 L424.0,266.4 L433.5,266.7 L443.0,269.7 L452.5,274.8 L453.9,274.9" fill="none" stroke="#6250d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="502.0" y="59.0" font-size="13" font-weight="600" fill="#0b0b0b">Curricula vs scratch</text>
+<line x1="502.0" y1="76.0" x2="518.0" y2="76.0" stroke="#898781" stroke-width="2.5" stroke-linecap="round"/>
+<text x="524.0" y="80.0" font-size="11" fill="#52514e">scratch, std 0.02 (lr 0.001, wd 0.1)</text>
+<line x1="743.9" y1="76.0" x2="759.9" y2="76.0" stroke="#eb6834" stroke-width="2.5" stroke-linecap="round"/>
+<text x="765.9" y="80.0" font-size="11" fill="#52514e">DeclRef, 2B (lr 0.003, wd 0.1)</text>
+<line x1="502.0" y1="92.0" x2="518.0" y2="92.0" stroke="#eda100" stroke-width="2.5" stroke-linecap="round"/>
+<text x="524.0" y="96.0" font-size="11" fill="#52514e">NCA, 2B (lr 0.003, wd 0.1)</text>
+<line x1="685.6" y1="92.0" x2="701.6" y2="92.0" stroke="#e87ba4" stroke-width="2.5" stroke-linecap="round"/>
+<text x="707.6" y="96.0" font-size="11" fill="#52514e">k-Dyck, 2B (lr 0.003, wd 0.1)</text>
+<line x1="560.0" y1="274.9" x2="958.0" y2="274.9" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="278.4" font-size="10.5" fill="#898781" text-anchor="end">1.4</text>
+<line x1="560.0" y1="232.7" x2="958.0" y2="232.7" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="236.2" font-size="10.5" fill="#898781" text-anchor="end">1.6</text>
+<line x1="560.0" y1="190.4" x2="958.0" y2="190.4" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="193.9" font-size="10.5" fill="#898781" text-anchor="end">1.8</text>
+<line x1="560.0" y1="148.2" x2="958.0" y2="148.2" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="151.7" font-size="10.5" fill="#898781" text-anchor="end">2</text>
+<line x1="560.0" y1="106.0" x2="958.0" y2="106.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="109.5" font-size="10.5" fill="#898781" text-anchor="end">2.2</text>
+<text x="578.1" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">0</text>
+<text x="650.5" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">200M</text>
+<text x="722.8" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">400M</text>
+<text x="795.2" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">600M</text>
+<text x="867.6" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">800M</text>
+<text x="940.0" y="310.0" font-size="10.5" fill="#898781" text-anchor="middle">1B</text>
+<line x1="560.0" y1="296.0" x2="958.0" y2="296.0" stroke="#c3c2b7" stroke-width="1"/>
+<text x="759.0" y="326.0" font-size="11" fill="#52514e" text-anchor="middle">fresh DCLM tokens</text>
+<text transform="translate(514.0,201.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">validation bpb</text>
+<clipPath id="c54965578"><rect x="554.0" y="100.0" width="410.0" height="202.0"/></clipPath>
+<g clip-path="url(#c54965578)">
+<path d="M578.1,-1190.4 L587.6,-101.7 L597.1,51.6 L606.5,103.1 L616.0,126.9 L625.5,145.7 L635.0,157.6 L644.5,168.9 L654.0,178.9 L663.4,192.2 L672.9,202.8 L682.4,208.9 L691.9,215.1 L701.4,220.0 L710.9,224.8 L720.4,229.0 L729.8,231.9 L739.3,233.3 L748.8,235.9 L758.3,238.1 L767.8,240.3 L777.3,241.3 L786.7,243.1 L796.2,244.4 L805.7,246.2 L815.2,247.2 L824.7,248.1 L834.2,249.4 L843.6,250.5 L853.1,251.2 L862.6,252.4 L872.1,253.4 L881.6,253.8 L891.1,255.0 L900.6,255.5 L910.0,256.2 L919.5,257.1 L929.0,260.1 L938.5,265.5 L939.9,265.6" fill="none" stroke="#898781" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M578.1,-2208.8 L587.6,-80.0 L597.1,72.9 L606.5,120.8 L616.0,149.3 L625.5,181.9 L635.0,198.4 L644.5,210.9 L654.0,216.9 L663.4,222.9 L672.9,226.8 L682.4,230.6 L691.9,233.9 L701.4,236.2 L710.9,239.6 L720.4,242.2 L729.8,243.9 L739.3,244.3 L748.8,246.8 L758.3,247.7 L767.8,250.0 L777.3,250.7 L786.7,252.4 L796.2,253.3 L805.7,254.1 L815.2,255.1 L824.7,256.1 L834.2,257.2 L843.6,257.9 L853.1,258.6 L862.6,259.3 L872.1,259.6 L881.6,260.7 L891.1,261.3 L900.6,261.3 L910.0,262.7 L919.5,262.9 L929.0,266.9 L938.5,273.2 L939.9,273.3" fill="none" stroke="#eb6834" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M578.1,-5829.6 L587.6,-220.7 L597.1,-27.1 L606.5,74.5 L616.0,111.4 L625.5,134.7 L635.0,148.9 L644.5,159.9 L654.0,169.7 L663.4,186.1 L672.9,201.4 L682.4,209.9 L691.9,216.2 L701.4,219.0 L710.9,224.0 L720.4,227.1 L729.8,229.5 L739.3,231.5 L748.8,233.3 L758.3,235.8 L767.8,238.4 L777.3,239.1 L786.7,240.7 L796.2,242.4 L805.7,243.3 L815.2,244.4 L824.7,245.7 L834.2,246.4 L843.6,247.9 L853.1,248.7 L862.6,249.4 L872.1,250.1 L881.6,251.2 L891.1,251.9 L900.6,252.1 L910.0,253.3 L919.5,253.7 L929.0,257.5 L938.5,264.1 L939.9,264.2" fill="none" stroke="#eda100" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M578.1,-946.4 L587.6,-117.5 L597.1,56.1 L606.5,133.6 L616.0,167.0 L625.5,184.0 L635.0,193.4 L644.5,201.0 L654.0,207.5 L663.4,211.6 L672.9,215.9 L682.4,219.2 L691.9,221.7 L701.4,224.2 L710.9,227.1 L720.4,229.2 L729.8,230.9 L739.3,232.1 L748.8,233.3 L758.3,235.6 L767.8,236.8 L777.3,237.2 L786.7,239.4 L796.2,240.4 L805.7,241.4 L815.2,242.2 L824.7,243.2 L834.2,243.4 L843.6,245.1 L853.1,245.3 L862.6,246.4 L872.1,246.9 L881.6,247.4 L891.1,248.1 L900.6,248.5 L910.0,249.4 L919.5,249.4 L929.0,253.5 L938.5,260.2 L939.9,260.3" fill="none" stroke="#e87ba4" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="16.0" y="361.0" font-size="13" font-weight="600" fill="#0b0b0b">Self-play warm starts, last 60%</text>
+<line x1="16.0" y1="378.0" x2="32.0" y2="378.0" stroke="#898781" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="382.0" font-size="11" fill="#52514e">scratch, std 0.02 (lr 0.001, wd 0.1)</text>
+<line x1="16.0" y1="394.0" x2="32.0" y2="394.0" stroke="#2a78d6" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="398.0" font-size="11" fill="#52514e">self-play round 200 (1.05B synthetic) (lr 0.001, wd 0.1)</text>
+<line x1="16.0" y1="410.0" x2="32.0" y2="410.0" stroke="#1baf7a" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="414.0" font-size="11" fill="#52514e">self-play round 400 (2.1B) (lr 0.003, wd 0.1)</text>
+<line x1="16.0" y1="426.0" x2="32.0" y2="426.0" stroke="#6250d6" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="430.0" font-size="11" fill="#52514e">self-play final, round 6560 (34.4B) (lr 0.003, wd 0.1)</text>
+<line x1="74.0" y1="598.0" x2="472.0" y2="598.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="601.5" font-size="10.5" fill="#898781" text-anchor="end">1.35</text>
+<line x1="74.0" y1="558.5" x2="472.0" y2="558.5" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="562.0" font-size="10.5" fill="#898781" text-anchor="end">1.4</text>
+<line x1="74.0" y1="519.0" x2="472.0" y2="519.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="522.5" font-size="10.5" fill="#898781" text-anchor="end">1.45</text>
+<line x1="74.0" y1="479.5" x2="472.0" y2="479.5" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="483.0" font-size="10.5" fill="#898781" text-anchor="end">1.5</text>
+<line x1="74.0" y1="440.0" x2="472.0" y2="440.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="443.5" font-size="10.5" fill="#898781" text-anchor="end">1.55</text>
+<text x="80.0" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">400M</text>
+<text x="142.4" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">500M</text>
+<text x="204.7" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">600M</text>
+<text x="267.0" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">700M</text>
+<text x="329.4" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">800M</text>
+<text x="391.7" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">900M</text>
+<text x="454.0" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">1B</text>
+<line x1="74.0" y1="598.0" x2="472.0" y2="598.0" stroke="#c3c2b7" stroke-width="1"/>
+<text x="273.0" y="628.0" font-size="11" fill="#52514e" text-anchor="middle">fresh DCLM tokens</text>
+<text transform="translate(28.0,519.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">validation bpb</text>
+<clipPath id="c85679836"><rect x="68.0" y="434.0" width="410.0" height="170.0"/></clipPath>
+<g clip-path="url(#c85679836)">
+<path d="M92.1,397.5 L108.4,402.8 L124.8,412.7 L141.1,420.7 L157.4,429.2 L173.8,433.0 L190.1,439.5 L206.4,444.3 L222.8,451.1 L239.1,455.0 L255.4,458.3 L271.8,463.0 L288.1,467.1 L304.4,470.0 L320.8,474.2 L337.1,477.9 L353.4,479.6 L369.8,484.2 L386.1,485.9 L402.5,488.5 L418.8,491.9 L435.1,503.2 L451.5,523.5 L453.9,523.7" fill="none" stroke="#898781" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M92.1,433.6 L108.4,441.4 L124.8,448.7 L141.1,454.4 L157.4,460.7 L173.8,465.7 L190.1,471.0 L206.4,474.7 L222.8,479.9 L239.1,482.3 L255.4,485.5 L271.8,489.9 L288.1,493.8 L304.4,497.1 L320.8,499.7 L337.1,501.4 L353.4,504.7 L369.8,507.6 L386.1,508.3 L402.5,511.8 L418.8,513.7 L435.1,525.3 L451.5,544.6 L453.9,544.7" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M92.1,437.6 L108.4,440.4 L124.8,446.2 L141.1,452.5 L157.4,458.5 L173.8,461.5 L190.1,467.3 L206.4,469.7 L222.8,474.1 L239.1,475.8 L255.4,477.8 L271.8,482.5 L288.1,485.5 L304.4,488.2 L320.8,489.6 L337.1,492.2 L353.4,495.2 L369.8,496.7 L386.1,498.2 L402.5,501.6 L418.8,500.5 L435.1,515.5 L451.5,539.0 L453.9,539.2" fill="none" stroke="#1baf7a" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M92.1,448.4 L108.4,452.7 L124.8,456.7 L141.1,459.9 L157.4,465.6 L173.8,468.1 L190.1,473.6 L206.4,476.3 L222.8,479.7 L239.1,482.0 L255.4,483.9 L271.8,486.7 L288.1,490.7 L304.4,492.1 L320.8,494.5 L337.1,495.4 L353.4,499.2 L369.8,500.1 L386.1,501.9 L402.5,504.4 L418.8,505.9 L435.1,518.9 L451.5,542.2 L453.9,542.5" fill="none" stroke="#6250d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<text x="502.0" y="361.0" font-size="13" font-weight="600" fill="#0b0b0b">Curricula, last 60%</text>
+<line x1="502.0" y1="378.0" x2="518.0" y2="378.0" stroke="#898781" stroke-width="2.5" stroke-linecap="round"/>
+<text x="524.0" y="382.0" font-size="11" fill="#52514e">scratch, std 0.02 (lr 0.001, wd 0.1)</text>
+<line x1="743.9" y1="378.0" x2="759.9" y2="378.0" stroke="#eb6834" stroke-width="2.5" stroke-linecap="round"/>
+<text x="765.9" y="382.0" font-size="11" fill="#52514e">DeclRef, 2B (lr 0.003, wd 0.1)</text>
+<line x1="502.0" y1="394.0" x2="518.0" y2="394.0" stroke="#eda100" stroke-width="2.5" stroke-linecap="round"/>
+<text x="524.0" y="398.0" font-size="11" fill="#52514e">NCA, 2B (lr 0.003, wd 0.1)</text>
+<line x1="685.6" y1="394.0" x2="701.6" y2="394.0" stroke="#e87ba4" stroke-width="2.5" stroke-linecap="round"/>
+<text x="707.6" y="398.0" font-size="11" fill="#52514e">k-Dyck, 2B (lr 0.003, wd 0.1)</text>
+<line x1="560.0" y1="598.0" x2="958.0" y2="598.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="601.5" font-size="10.5" fill="#898781" text-anchor="end">1.35</text>
+<line x1="560.0" y1="550.5" x2="958.0" y2="550.5" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="554.0" font-size="10.5" fill="#898781" text-anchor="end">1.4</text>
+<line x1="560.0" y1="503.0" x2="958.0" y2="503.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="506.5" font-size="10.5" fill="#898781" text-anchor="end">1.45</text>
+<line x1="560.0" y1="455.5" x2="958.0" y2="455.5" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="459.0" font-size="10.5" fill="#898781" text-anchor="end">1.5</text>
+<line x1="560.0" y1="408.0" x2="958.0" y2="408.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="554.0" y="411.5" font-size="10.5" fill="#898781" text-anchor="end">1.55</text>
+<text x="566.0" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">400M</text>
+<text x="628.4" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">500M</text>
+<text x="690.7" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">600M</text>
+<text x="753.0" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">700M</text>
+<text x="815.4" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">800M</text>
+<text x="877.7" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">900M</text>
+<text x="940.0" y="612.0" font-size="10.5" fill="#898781" text-anchor="middle">1B</text>
+<line x1="560.0" y1="598.0" x2="958.0" y2="598.0" stroke="#c3c2b7" stroke-width="1"/>
+<text x="759.0" y="628.0" font-size="11" fill="#52514e" text-anchor="middle">fresh DCLM tokens</text>
+<text transform="translate(514.0,503.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">validation bpb</text>
+<clipPath id="c89515946"><rect x="554.0" y="402.0" width="410.0" height="202.0"/></clipPath>
+<g clip-path="url(#c89515946)">
+<path d="M578.1,356.8 L594.4,363.3 L610.8,375.2 L627.1,384.8 L643.4,395.0 L659.8,399.5 L676.1,407.4 L692.4,413.2 L708.8,421.3 L725.1,426.1 L741.4,430.0 L757.8,435.7 L774.1,440.5 L790.4,444.1 L806.8,449.1 L823.1,453.6 L839.4,455.6 L855.8,461.2 L872.1,463.2 L888.5,466.3 L904.8,470.4 L921.1,484.0 L937.5,508.4 L939.9,508.7" fill="none" stroke="#898781" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M578.1,410.9 L594.4,412.7 L610.8,424.0 L627.1,428.0 L643.4,438.5 L659.8,441.7 L676.1,449.5 L692.4,453.4 L708.8,457.1 L725.1,461.3 L741.4,465.8 L757.8,470.7 L774.1,474.0 L790.4,477.0 L806.8,480.3 L823.1,481.6 L839.4,486.7 L855.8,489.3 L872.1,489.3 L888.5,495.5 L904.8,496.5 L921.1,514.4 L937.5,543.0 L939.9,543.3" fill="none" stroke="#eb6834" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M578.1,346.4 L594.4,355.4 L610.8,363.3 L627.1,374.7 L643.4,386.4 L659.8,389.5 L676.1,396.8 L692.4,404.4 L708.8,408.3 L725.1,413.2 L741.4,419.4 L757.8,422.4 L774.1,428.8 L790.4,432.7 L806.8,435.9 L823.1,438.8 L839.4,444.0 L855.8,446.9 L872.1,447.8 L888.5,453.2 L904.8,455.2 L921.1,472.4 L937.5,502.1 L939.9,502.4" fill="none" stroke="#eda100" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M578.1,352.4 L594.4,357.9 L610.8,363.3 L627.1,373.8 L643.4,379.1 L659.8,380.7 L676.1,390.6 L692.4,395.2 L708.8,399.6 L725.1,403.2 L741.4,407.9 L757.8,408.7 L774.1,416.6 L790.4,417.6 L806.8,422.2 L823.1,424.4 L839.4,426.9 L855.8,430.0 L872.1,431.8 L888.5,435.7 L904.8,436.0 L921.1,454.4 L937.5,484.4 L939.9,484.8" fill="none" stroke="#e87ba4" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+</svg>

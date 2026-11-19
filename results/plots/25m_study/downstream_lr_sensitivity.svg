@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="988" height="356" viewBox="0 0 988 356" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="988" height="356" fill="#fcfcfb"/>
+<text x="16" y="20" font-size="15" font-weight="600" fill="#0b0b0b">25m downstream: sensitivity to the learning rate</text>
+<text x="16" y="37" font-size="11.5" fill="#52514e">final validation bpb; darker = lower (better)</text>
+<text x="16.0" y="59.0" font-size="13" font-weight="600" fill="#0b0b0b">1B fresh tokens</text>
+<text x="302.3" y="314.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.001, 0.1</text>
+<text x="415.4" y="314.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.003, 0.1</text>
+<text x="237.7" y="92.1" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.02</text>
+<rect x="246.7" y="75.0" width="111.1" height="26.2" rx="3" fill="#256abf"/>
+<text x="302.3" y="92.1" font-size="10.5" fill="#ffffff" text-anchor="middle">1.444</text>
+<rect x="359.9" y="75.0" width="111.1" height="26.2" rx="3" fill="#2a78d6"/>
+<text x="415.4" y="92.1" font-size="10.5" fill="#ffffff" text-anchor="middle">1.456</text>
+<text x="237.7" y="120.4" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.005</text>
+<rect x="246.7" y="103.2" width="111.1" height="26.2" rx="3" fill="#3987e5"/>
+<text x="302.3" y="120.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.460</text>
+<rect x="359.9" y="103.2" width="111.1" height="26.2" rx="3" fill="#3987e5"/>
+<text x="415.4" y="120.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.458</text>
+<text x="237.7" y="148.6" font-size="11" fill="#52514e" text-anchor="end">self-play round 200 (1.05B synthetic)</text>
+<rect x="246.7" y="131.5" width="111.1" height="26.2" rx="3" fill="#104281"/>
+<text x="302.3" y="148.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.417</text>
+<rect x="359.9" y="131.5" width="111.1" height="26.2" rx="3" fill="#184f95"/>
+<text x="415.4" y="148.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.422</text>
+<text x="237.7" y="176.9" font-size="11" fill="#52514e" text-anchor="end">self-play round 400 (2.1B)</text>
+<rect x="246.7" y="159.8" width="111.1" height="26.2" rx="3" fill="#184f95"/>
+<text x="302.3" y="176.9" font-size="10.5" fill="#ffffff" text-anchor="middle">1.427</text>
+<rect x="359.9" y="159.8" width="111.1" height="26.2" rx="3" fill="#184f95"/>
+<text x="415.4" y="176.9" font-size="10.5" fill="#ffffff" text-anchor="middle">1.424</text>
+<text x="237.7" y="205.1" font-size="11" fill="#52514e" text-anchor="end">self-play final, round 6560 (34.4B)</text>
+<rect x="246.7" y="188.0" width="111.1" height="26.2" rx="3" fill="#3987e5"/>
+<text x="302.3" y="205.1" font-size="10.5" fill="#ffffff" text-anchor="middle">1.460</text>
+<rect x="359.9" y="188.0" width="111.1" height="26.2" rx="3" fill="#104281"/>
+<text x="415.4" y="205.1" font-size="10.5" fill="#ffffff" text-anchor="middle">1.420</text>
+<text x="237.7" y="233.4" font-size="11" fill="#52514e" text-anchor="end">DeclRef, 2B</text>
+<rect x="246.7" y="216.2" width="111.1" height="26.2" rx="3" fill="#1c5cab"/>
+<text x="302.3" y="233.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.439</text>
+<rect x="359.9" y="216.2" width="111.1" height="26.2" rx="3" fill="#0d366b"/>
+<text x="415.4" y="233.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.408</text>
+<text x="237.7" y="261.6" font-size="11" fill="#52514e" text-anchor="end">NCA, 2B</text>
+<rect x="246.7" y="244.5" width="111.1" height="26.2" rx="3" fill="#cde2fb"/>
+<text x="302.3" y="261.6" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.516</text>
+<rect x="359.9" y="244.5" width="111.1" height="26.2" rx="3" fill="#2a78d6"/>
+<text x="415.4" y="261.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.451</text>
+<text x="237.7" y="289.9" font-size="11" fill="#52514e" text-anchor="end">k-Dyck, 2B</text>
+<rect x="246.7" y="272.8" width="111.1" height="26.2" rx="3" fill="#b7d3f6"/>
+<text x="302.3" y="289.9" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.505</text>
+<rect x="359.9" y="272.8" width="111.1" height="26.2" rx="3" fill="#5598e7"/>
+<text x="415.4" y="289.9" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.469</text>
+<text x="358.9" y="330.0" font-size="11" fill="#52514e" text-anchor="middle">learning rate, weight decay</text>
+<text x="502.0" y="59.0" font-size="13" font-weight="600" fill="#0b0b0b">2B fresh tokens</text>
+<text x="788.3" y="314.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.001, 0.1</text>
+<text x="901.4" y="314.0" font-size="10.5" fill="#52514e" text-anchor="middle">0.003, 0.1</text>
+<text x="723.7" y="92.1" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.02</text>
+<rect x="732.7" y="75.0" width="111.1" height="26.2" rx="3" fill="#2a78d6"/>
+<text x="788.3" y="92.1" font-size="10.5" fill="#ffffff" text-anchor="middle">1.388</text>
+<rect x="845.9" y="75.0" width="111.1" height="26.2" rx="3" fill="#5598e7"/>
+<text x="901.4" y="92.1" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.403</text>
+<text x="723.7" y="120.4" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.005</text>
+<rect x="732.7" y="103.2" width="111.1" height="26.2" rx="3" fill="#5598e7"/>
+<text x="788.3" y="120.4" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.401</text>
+<rect x="845.9" y="103.2" width="111.1" height="26.2" rx="3" fill="#5598e7"/>
+<text x="901.4" y="120.4" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.402</text>
+<text x="723.7" y="148.6" font-size="11" fill="#52514e" text-anchor="end">self-play round 200 (1.05B synthetic)</text>
+<rect x="732.7" y="131.5" width="111.1" height="26.2" rx="3" fill="#184f95"/>
+<text x="788.3" y="148.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.368</text>
+<rect x="845.9" y="131.5" width="111.1" height="26.2" rx="3" fill="#256abf"/>
+<text x="901.4" y="148.6" font-size="10.5" fill="#ffffff" text-anchor="middle">1.381</text>
+<text x="723.7" y="176.9" font-size="11" fill="#52514e" text-anchor="end">self-play round 400 (2.1B)</text>
+<rect x="732.7" y="159.8" width="111.1" height="26.2" rx="3" fill="#1c5cab"/>
+<text x="788.3" y="176.9" font-size="10.5" fill="#ffffff" text-anchor="middle">1.374</text>
+<rect x="845.9" y="159.8" width="111.1" height="26.2" rx="3" fill="#256abf"/>
+<text x="901.4" y="176.9" font-size="10.5" fill="#ffffff" text-anchor="middle">1.380</text>
+<text x="723.7" y="205.1" font-size="11" fill="#52514e" text-anchor="end">self-play final, round 6560 (34.4B)</text>
+<rect x="732.7" y="188.0" width="111.1" height="26.2" rx="3" fill="#5598e7"/>
+<text x="788.3" y="205.1" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.398</text>
+<rect x="845.9" y="188.0" width="111.1" height="26.2" rx="3" fill="#1c5cab"/>
+<text x="901.4" y="205.1" font-size="10.5" fill="#ffffff" text-anchor="middle">1.380</text>
+<text x="723.7" y="233.4" font-size="11" fill="#52514e" text-anchor="end">DeclRef, 2B</text>
+<rect x="732.7" y="216.2" width="111.1" height="26.2" rx="3" fill="#184f95"/>
+<text x="788.3" y="233.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.371</text>
+<rect x="845.9" y="216.2" width="111.1" height="26.2" rx="3" fill="#0d366b"/>
+<text x="901.4" y="233.4" font-size="10.5" fill="#ffffff" text-anchor="middle">1.360</text>
+<text x="723.7" y="261.6" font-size="11" fill="#52514e" text-anchor="end">NCA, 2B</text>
+<rect x="732.7" y="244.5" width="111.1" height="26.2" rx="3" fill="#b7d3f6"/>
+<text x="788.3" y="261.6" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.423</text>
+<rect x="845.9" y="244.5" width="111.1" height="26.2" rx="3" fill="#5598e7"/>
+<text x="901.4" y="261.6" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.399</text>
+<text x="723.7" y="289.9" font-size="11" fill="#52514e" text-anchor="end">k-Dyck, 2B</text>
+<rect x="732.7" y="272.8" width="111.1" height="26.2" rx="3" fill="#cde2fb"/>
+<text x="788.3" y="289.9" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.430</text>
+<rect x="845.9" y="272.8" width="111.1" height="26.2" rx="3" fill="#86b6ef"/>
+<text x="901.4" y="289.9" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.415</text>
+<text x="844.9" y="330.0" font-size="11" fill="#52514e" text-anchor="middle">learning rate, weight decay</text>
+</svg>

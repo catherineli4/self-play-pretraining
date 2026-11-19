@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="592" height="236" viewBox="0 0 592 236" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="592" height="236" fill="#fcfcfb"/>
+<text x="16" y="20" font-size="15" font-weight="600" fill="#0b0b0b">1m fresh-token protocol: final bpb by warm start</text>
+<text x="16" y="37" font-size="11.5" fill="#52514e">best LR x WD per arm and budget; lower is better</text>
+<circle cx="24.0" cy="62.0" r="4" fill="#2a78d6"/>
+<text x="38.0" y="66.0" font-size="11" fill="#52514e">1B fresh tokens</text>
+<circle cx="143.4" cy="62.0" r="4" fill="#eb6834"/>
+<text x="157.4" y="66.0" font-size="11" fill="#52514e">2B fresh tokens</text>
+<line x1="193.2" y1="86.0" x2="562.0" y2="86.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="185.2" y="90.0" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.02</text>
+<line x1="193.2" y1="106.0" x2="562.0" y2="106.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="185.2" y="110.0" font-size="11" fill="#52514e" text-anchor="end">scratch, std 0.005</text>
+<line x1="193.2" y1="126.0" x2="562.0" y2="126.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="185.2" y="130.0" font-size="11" fill="#52514e" text-anchor="end">self-play final (round 8192)</text>
+<line x1="193.2" y1="146.0" x2="562.0" y2="146.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="185.2" y="150.0" font-size="11" fill="#52514e" text-anchor="end">self-play round 2800</text>
+<line x1="193.2" y1="166.0" x2="562.0" y2="166.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="185.2" y="170.0" font-size="11" fill="#52514e" text-anchor="end">self-play round 4100</text>
+<line x1="241.3" y1="76.0" x2="241.3" y2="176.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="241.3" y="190.0" font-size="10.5" fill="#898781" text-anchor="middle">1.700</text>
+<line x1="342.8" y1="76.0" x2="342.8" y2="176.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="342.8" y="190.0" font-size="10.5" fill="#898781" text-anchor="middle">1.750</text>
+<line x1="444.2" y1="76.0" x2="444.2" y2="176.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="444.2" y="190.0" font-size="10.5" fill="#898781" text-anchor="middle">1.800</text>
+<line x1="545.7" y1="76.0" x2="545.7" y2="176.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="545.7" y="190.0" font-size="10.5" fill="#898781" text-anchor="middle">1.850</text>
+<line x1="193.2" y1="176.0" x2="562.0" y2="176.0" stroke="#c3c2b7" stroke-width="1"/>
+<text x="377.6" y="206.0" font-size="11" fill="#52514e" text-anchor="middle">final validation bpb (after the LR decay)</text>
+<clipPath id="c7966013"><rect x="187.2" y="70.0" width="380.8" height="112.0"/></clipPath>
+<g clip-path="url(#c7966013)">
+<circle cx="452.3" cy="86.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="545.2" cy="106.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="269.1" cy="126.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="270.0" cy="146.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="264.7" cy="166.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="273.7" y="170.0" font-size="10.5" fill="#52514e">1.712</text>
+<circle cx="343.9" cy="86.0" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="320.5" cy="106.0" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="210.0" cy="126.0" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="219.0" y="130.0" font-size="10.5" fill="#52514e">1.685</text>
+<circle cx="214.1" cy="146.0" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="213.0" cy="166.0" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+</g>
+</svg>

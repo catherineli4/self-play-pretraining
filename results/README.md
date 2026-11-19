@@ -14,6 +14,13 @@ Small summaries only; full logs, checkpoints and per-run histories are in
 
 The 25m pipeline (`scripts/run_25m_pipeline.sh`) writes its results to `gs://.../pp25m/` when it finishes.
 
+- `1m_reward_variant/`: ablation of the learning-progress reward without the AdamW step operator at 1m (4096 rounds);
+  `25m/reward_variant.md` is the same ablation at 25m for the full schedule.
+- `1m_generator_variant/`: ablation where the generator is updated on its own fresh samples only (no policy-gradient or
+  expert-iteration fine-tuning on replayed or mutated programs from earlier rounds), 1m, 4096 rounds.
+- `plots/`: every figure as SVG, grouped by experiment (`plots/README.md` lists them with captions; `plots/index.html`
+  shows them all on one page). Regenerate with `python scripts/plot_results.py`; the training-dynamics and
+  validation-curve figures need the local run logs, the rest come from the files in this directory.
 - `25m/`: the 25m self-play run's zero-shot curve (every 50 rounds) and the fresh-DCLM downstream comparison of
   warm starts (self-play checkpoints at 1.05B, 2.1B and 34.4B synthetic tokens; the k-Dyck, NCA and DeclRef
   curricula of "Rethinking Pre-pretraining" at 2B synthetic tokens) against training from scratch, one pass over

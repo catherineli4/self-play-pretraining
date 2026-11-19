@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="592" height="386" viewBox="0 0 592 386" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="592" height="386" fill="#fcfcfb"/>
+<text x="16" y="20" font-size="15" font-weight="600" fill="#0b0b0b">25m: warm-start value against the self-play checkpoint</text>
+<text x="16" y="37" font-size="11.5" fill="#52514e">final bpb after 1B / 2B fresh DCLM tokens, by the synthetic tokens the checkpoint had consumed (log); dashed lines = scratch</text>
+<line x1="16.0" y1="62.0" x2="32.0" y2="62.0" stroke="#2a78d6" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="66.0" font-size="11" fill="#52514e">baseline, 1B fresh</text>
+<line x1="152.9" y1="62.0" x2="168.9" y2="62.0" stroke="#2a78d6" stroke-width="2.5" stroke-linecap="round"/>
+<text x="174.9" y="66.0" font-size="11" fill="#52514e">no step operator, 1B fresh</text>
+<line x1="336.5" y1="62.0" x2="352.5" y2="62.0" stroke="#eb6834" stroke-width="2.5" stroke-linecap="round"/>
+<text x="358.5" y="66.0" font-size="11" fill="#52514e">baseline, 2B fresh</text>
+<line x1="16.0" y1="78.0" x2="32.0" y2="78.0" stroke="#eb6834" stroke-width="2.5" stroke-linecap="round"/>
+<text x="38.0" y="82.0" font-size="11" fill="#52514e">no step operator, 2B fresh</text>
+<line x1="74.0" y1="278.3" x2="562.0" y2="278.3" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="281.8" font-size="10.5" fill="#898781" text-anchor="end">1.38</text>
+<line x1="74.0" y1="223.4" x2="562.0" y2="223.4" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="226.9" font-size="10.5" fill="#898781" text-anchor="end">1.4</text>
+<line x1="74.0" y1="168.6" x2="562.0" y2="168.6" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="172.1" font-size="10.5" fill="#898781" text-anchor="end">1.42</text>
+<line x1="74.0" y1="113.7" x2="562.0" y2="113.7" stroke="#e1e0d9" stroke-width="1"/>
+<text x="68.0" y="117.2" font-size="10.5" fill="#898781" text-anchor="end">1.44</text>
+<line x1="85.8" y1="92.0" x2="85.8" y2="326.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="85.8" y="340.0" font-size="10.5" fill="#898781" text-anchor="middle">1B</text>
+<line x1="175.5" y1="92.0" x2="175.5" y2="326.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="175.5" y="340.0" font-size="10.5" fill="#898781" text-anchor="middle">2B</text>
+<line x1="294.2" y1="92.0" x2="294.2" y2="326.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="294.2" y="340.0" font-size="10.5" fill="#898781" text-anchor="middle">5B</text>
+<line x1="383.9" y1="92.0" x2="383.9" y2="326.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="383.9" y="340.0" font-size="10.5" fill="#898781" text-anchor="middle">10B</text>
+<line x1="473.7" y1="92.0" x2="473.7" y2="326.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="473.7" y="340.0" font-size="10.5" fill="#898781" text-anchor="middle">20B</text>
+<line x1="74.0" y1="326.0" x2="562.0" y2="326.0" stroke="#c3c2b7" stroke-width="1"/>
+<text x="318.0" y="356.0" font-size="11" fill="#52514e" text-anchor="middle">synthetic tokens consumed by the checkpoint (log)</text>
+<text transform="translate(28.0,209.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">final validation bpb</text>
+<clipPath id="c73679575"><rect x="68.0" y="86.0" width="500.0" height="246.0"/></clipPath>
+<g clip-path="url(#c73679575)">
+<path d="M92.1,175.7 L181.8,156.4 L543.9,167.9" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="92.1" cy="175.7" r="3.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<circle cx="181.8" cy="156.4" r="3.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<circle cx="543.9" cy="167.9" r="3.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<path d="M92.1,177.9 L181.8,143.8 L543.9,191.2" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 4"/>
+<circle cx="92.1" cy="177.9" r="3.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<circle cx="181.8" cy="143.8" r="3.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<circle cx="543.9" cy="191.2" r="3.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<line x1="74.0" y1="102.6" x2="562.0" y2="102.6" stroke="#2a78d6" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="558.0" y="98.6" font-size="10.5" fill="#52514e" text-anchor="end">scratch, 1B fresh</text>
+<path d="M92.1,310.1 L181.8,293.8 L543.9,279.4" fill="none" stroke="#eb6834" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="92.1" cy="310.1" r="3.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<circle cx="181.8" cy="293.8" r="3.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<circle cx="543.9" cy="279.4" r="3.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<path d="M92.1,315.4 L181.8,295.8 L543.9,301.1" fill="none" stroke="#eb6834" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 4"/>
+<circle cx="92.1" cy="315.4" r="3.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<circle cx="181.8" cy="295.8" r="3.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<circle cx="543.9" cy="301.1" r="3.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="1.5" fill-opacity="1.0"/>
+<line x1="74.0" y1="257.2" x2="562.0" y2="257.2" stroke="#eb6834" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="558.0" y="253.2" font-size="10.5" fill="#52514e" text-anchor="end">scratch, 2B fresh</text>
+</g>
+</svg>

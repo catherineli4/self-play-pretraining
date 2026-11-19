@@ -138,7 +138,10 @@ plain text have download helpers. Epiplexity (Sec. 3.1) is not implemented.
   (full 6560 rounds); results in `results/1m_reward_variant/summary.md` and `results/25m/reward_variant.md`.
 - `--gen_update fresh` (`gen_mask` in `generator_losses`): the generator is updated on its own fresh samples only; replayed
   and mutated programs still train the learner but enter neither the PG nor the EI loss (default `all` = the paper's
-  setting). `scripts/run_gen_variant_1m.sh` runs the 1m ablation (4096 rounds, then the fresh-DCLM warm-start sweep).
+  setting). `scripts/run_gen_variant_1m.sh` runs the 1m ablation (4096 rounds, then the fresh-DCLM warm-start sweep);
+  results in `results/1m_generator_variant/summary.md`.
+- `scripts/plot_results.py` draws every results figure as SVG into `results/plots/<experiment>/` (dependency-free, via
+  `scripts/svgchart.py`) with an index in `results/plots/README.md`.
 - `scripts/bootstrap_instance.sh`: recovers a fresh or preempted spot VM (local-SSD RAID, NVIDIA module via
   dkms for the running kernel, conda env with torch 2.8, data and checkpoints from GCS). Everything durable
   is mirrored to `gs://cmu-gpucloud-catheri4/self-play-pretraining/` (checkpoints every 100 rounds, logs,
