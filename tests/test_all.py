@@ -15,7 +15,7 @@ from spp.data import RandomPCFG, sample_pcfg_rows, sample_uniform_programs  # no
 from spp.generator import ProgramGenerator, generator_losses, log_prior  # noqa: E402
 from spp.icl import TASKS, make_instance  # noqa: E402
 from spp.model import build_model, per_sequence_cross_entropy  # noqa: E402
-from spp.reward import adamw_preconditioner, directional_losses, make_tangent  # noqa: E402
+from spp.reward import adamw_preconditioner, directional_losses, identity_preconditioner, make_tangent  # noqa: E402
 from spp.structure import classify_output  # noqa: E402
 from spp.tokens import ALPHABET_SIZE, BODY_ALPHABET, PROGRAM_ALPHABET  # noqa: E402
 
@@ -88,6 +88,21 @@ class TestReward(unittest.TestCase):
         self.assertTrue(all(torch.isfinite(v).all() and (v > 0).all() for v in P1.values()))
         t = make_tangent(P1, {k: v.detach().clone() for k, v in model.named_parameters()}, dict(model.named_parameters()))
         self.assertTrue(all(float(v.abs().max()) == 0 for v in t.values()))
+
+
+    def test_identity_preconditioner_gives_raw_displacement(self):
+        torch.manual_seed(0)
+        model = build_model("tiny", max_seq_len=32).to(DEV)
+        now = dict(model.named_parameters())
+        past = {k: v.detach().clone() + 0.1 for k, v in now.items()}
+        P = identity_preconditioner(now)
+        self.assertTrue(all(torch.all(P[k] == 1) and P[k].shape == v.shape for k, v in now.items()))
+        t = make_tangent(P, past, now)
+        for k, v in now.items():
+            self.assertTrue(torch.allclose(t[k], past[k] - v.detach()))
+        opt = torch.optim.AdamW(model.parameters(), lr=1e-3)
+        Pa = adamw_preconditioner(opt, now)   # before any step: lr / eps, i.e. not the identity
+        self.assertFalse(torch.allclose(Pa[next(iter(now))], P[next(iter(now))]))
 
 
 class TestGenerator(unittest.TestCase):

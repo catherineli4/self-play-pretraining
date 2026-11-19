@@ -37,7 +37,7 @@ from .fastattn import JVP_FLASH_AVAILABLE
 from .generator import ProgramGenerator, generator_losses, log_prior
 from .icl import evaluate_icl
 from .model import build_model, per_sequence_cross_entropy
-from .reward import adamw_preconditioner, directional_losses, make_tangent
+from .reward import adamw_preconditioner, directional_losses, identity_preconditioner, make_tangent
 from .structure import classify_output
 from .tokens import START_OUTPUT
 
@@ -78,6 +78,7 @@ class TrainConfig:
     rho_clip: float = 20.0
     reward_variant: str = "abs"     # abs | signed | negate | shuffle | loss_delta
     lookback: str = "half"          # half: floor(e/2) | last_step: e-1
+    tangent_precond: str = "adamw"  # adamw: P = lr/(sqrt(v_hat)+eps) (paper) | identity: raw theta_past - theta_e
     reward_chunk: int = 16
     jvp_kernel: str = "auto"        # auto | flash (jvp_flash_attention package) | math
     lookback_storage: str = "disk"  # disk | memory
@@ -342,14 +343,19 @@ class SelfPlayTrainer:
 
     # ------------------------------------------------------------------ steps
     def make_round_tangent(self, e: int) -> tuple[dict[str, torch.Tensor], dict]:
-        """Rank 0: v = P_e * (theta_past - theta_e), zero when no lookback checkpoint exists yet."""
+        """Rank 0: v = P_e * (theta_past - theta_e) (P_e = AdamW step operator, or 1), zero when no lookback checkpoint exists yet."""
         cfg = self.cfg
         now = self.params()
         past_round = (e - 1) if cfg.lookback == "last_step" else e // 2
         if e == 0 or not self.lookback.has(past_round):
             return {k: torch.zeros_like(v) for k, v in now.items()}, {"reward/delta_theta_norm": 0.0, "reward/past_round": past_round}
         past = self.lookback.load(past_round)
-        P = adamw_preconditioner(self.learner_opt, now)
+        if cfg.tangent_precond == "identity":
+            P = identity_preconditioner(now)
+        elif cfg.tangent_precond == "adamw":
+            P = adamw_preconditioner(self.learner_opt, now)
+        else:
+            raise ValueError(f"unknown tangent_precond {cfg.tangent_precond}")
         tangent = make_tangent(P, past, now)
         delta_norm = math.sqrt(sum(float((past[k].to(v.device) - v.detach()).pow(2).sum()) for k, v in now.items()))
         return tangent, {"reward/delta_theta_norm": delta_norm, "reward/past_round": past_round,

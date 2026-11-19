@@ -42,6 +42,16 @@ def adamw_preconditioner(optimizer: torch.optim.Optimizer, named_params: dict[st
     return out
 
 
+def identity_preconditioner(named_params: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
+    """P = 1: the tangent is the raw parameter displacement theta_past - theta_now (no AdamW step operator).
+
+    The reward then measures the first-order change in a sequence's loss over the lookback window itself,
+    instead of the change that an AdamW step along that displacement would produce. Rewards are z-scored
+    across the pool in the generator losses, so only the per-coordinate weighting differs, not the scale.
+    """
+    return {name: torch.ones_like(p) for name, p in named_params.items()}
+
+
 def make_tangent(preconditioner: dict[str, torch.Tensor], theta_past: dict[str, torch.Tensor],
                  theta_now: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
     """v = P * (theta_past - theta_now)."""
