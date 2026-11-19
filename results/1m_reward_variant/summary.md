@@ -58,3 +58,8 @@ P_e up-weights coordinates with small gradient variance (such as embeddings of r
 exercise rarely used parts of the model, which shows up as longer, more varied outputs and better ICL. The warm-start
 margin is single-seed and of the same order as the spread between baseline checkpoints (0.002) and the LR grid (0.01 to 0.03),
 so it needs seeds before being called a gain; the zero-shot and ICL deficits are large relative to those spreads.
+
+Update (25m, full 6560-round schedule, `../25m/reward_variant.md`): at 25m the variant ends level on zero-shot transfer and
+equal or better on ICL after lagging for the first 3000 rounds, is a slightly better warm start (0.008 bpb at the final
+checkpoint), and settles on a harder, not easier, curriculum. The 1m deficits above were measured at rounds 3100-4100 of a
+4096-round run, inside that early lag, and the mechanism guess in the reading is not supported at 25m.

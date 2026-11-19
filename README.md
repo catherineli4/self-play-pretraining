@@ -134,7 +134,11 @@ plain text have download helpers. Epiplexity (Sec. 3.1) is not implemented.
   `scripts/pretrain_natural.py` supports under `torchrun`); results in `results/25m/matched_compute.md`.
 - `--tangent_precond identity` (`identity_preconditioner` in `spp/reward.py`): the learning-progress reward without the
   AdamW step operator (tangent theta_past - theta_e). `scripts/run_reward_variant_1m.sh` runs the 1m ablation (4096 rounds
-  on 8 GPUs, then the fresh-DCLM warm-start sweep of its checkpoints); results in `results/1m_reward_variant/summary.md`.
+  on 8 GPUs, then the fresh-DCLM warm-start sweep of its checkpoints) and `scripts/run_reward_variant_25m.sh` the 25m one
+  (full 6560 rounds); results in `results/1m_reward_variant/summary.md` and `results/25m/reward_variant.md`.
+- `--gen_update fresh` (`gen_mask` in `generator_losses`): the generator is updated on its own fresh samples only; replayed
+  and mutated programs still train the learner but enter neither the PG nor the EI loss (default `all` = the paper's
+  setting). `scripts/run_gen_variant_1m.sh` runs the 1m ablation (4096 rounds, then the fresh-DCLM warm-start sweep).
 - `scripts/bootstrap_instance.sh`: recovers a fresh or preempted spot VM (local-SSD RAID, NVIDIA module via
   dkms for the running kernel, conda env with torch 2.8, data and checkpoints from GCS). Everything durable
   is mirrored to `gs://cmu-gpucloud-catheri4/self-play-pretraining/` (checkpoints every 100 rounds, logs,

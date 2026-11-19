@@ -75,6 +75,7 @@ class TrainConfig:
     gen_lr_ratio: float = 1.0
     beta_kl: float = 0.05
     lambda_ei: float = 1.0
+    gen_update: str = "all"         # all: PG on fresh+replay, EI on the whole pool (paper) | fresh: both losses on this round's fresh samples only (no fine-tuning on replayed/mutated programs)
     rho_clip: float = 20.0
     reward_variant: str = "abs"     # abs | signed | negate | shuffle | loss_delta
     lookback: str = "half"          # half: floor(e/2) | last_step: e-1
@@ -424,8 +425,14 @@ class SelfPlayTrainer:
         logp_old = torch.tensor([p.logp_old for p in pool], device=self.device)
         logp_old = torch.where(is_mut, logp.detach(), logp_old)     # mut rows: no sampling prob
         lprior = log_prior(bodies, self.device)
+        if cfg.gen_update == "fresh":
+            gen_mask = torch.tensor([p.source == "fresh" for p in pool], device=self.device)
+        elif cfg.gen_update == "all":
+            gen_mask = None
+        else:
+            raise ValueError(f"unknown gen_update {cfg.gen_update}")
         loss, stats = generator_losses(logp, logp_old, lprior, rewards, is_mut, beta=cfg.beta_kl,
-                                       lambda_ei=cfg.lambda_ei, rho_clip=cfg.rho_clip)
+                                       lambda_ei=cfg.lambda_ei, rho_clip=cfg.rho_clip, gen_mask=gen_mask)
         loss.backward()
         gn = torch.nn.utils.clip_grad_norm_(self.gen_model.parameters(), cfg.grad_clip)
         self.gen_opt.step()

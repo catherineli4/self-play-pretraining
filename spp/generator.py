@@ -101,8 +101,20 @@ class ProgramGenerator:
 def generator_losses(logp: torch.Tensor, logp_old: torch.Tensor, logprior: torch.Tensor,
                      rewards: torch.Tensor, is_mut: torch.Tensor, *, beta: float,
                      lambda_ei: float = 1.0, rho_clip: float = 20.0, eps: float = 1e-8,
+                     gen_mask: torch.Tensor | None = None,
                      ) -> tuple[torch.Tensor, dict[str, float]]:
-    """L_generator = L_PG + lambda_EI * L_EI over the round pool (paper Eqs. 4-5)."""
+    """L_generator = L_PG + lambda_EI * L_EI over the round pool (paper Eqs. 4-5).
+
+    gen_mask (bool, one per program) restricts both losses to a subset of the pool: the advantage z-scoring and the
+    EI weights are computed within that subset, as if the other programs were never shown to the generator.
+    None = the whole pool (PG on fresh + replayed programs, EI on everything, the paper's setting).
+    """
+    kl_all = float((logp.detach() - logprior).mean())
+    n_update = int(logp.numel())
+    if gen_mask is not None:
+        idx = gen_mask.nonzero(as_tuple=True)[0]
+        logp, logp_old, logprior, rewards, is_mut = (t[idx] for t in (logp, logp_old, logprior, rewards, is_mut))
+        n_update = int(idx.numel())
     r = rewards.float()
     adv = (r - r.mean()) / (r.std(unbiased=False) + eps) - beta * (logp.detach() - logprior)
     log_rho = (logp.detach() - logp_old).clamp(-rho_clip, rho_clip)
@@ -116,7 +128,7 @@ def generator_losses(logp: torch.Tensor, logp_old: torch.Tensor, logprior: torch
     loss = loss_pg + lambda_ei * loss_ei
     stats = {
         "gen/loss_pg": float(loss_pg), "gen/loss_ei": float(loss_ei),
-        "gen/adv_mean": float(adv.mean()), "gen/kl_to_prior": float((logp.detach() - logprior).mean()),
+        "gen/adv_mean": float(adv.mean()), "gen/kl_to_prior": kl_all, "gen/n_update": n_update,
         "gen/rho_mean": float(rho[pg_mask].mean()) if int(n_pg) else 1.0,
     }
     return loss, stats

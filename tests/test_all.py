@@ -131,6 +131,27 @@ class TestGenerator(unittest.TestCase):
 
 
 class TestBank(unittest.TestCase):
+    def test_gen_mask_equals_losses_on_the_subset(self):
+        torch.manual_seed(0)
+        logp = torch.randn(8, device=DEV, requires_grad=True)
+        logp_old = logp.detach() + 0.1 * torch.randn(8, device=DEV)
+        lprior = torch.full((8,), -3.0, device=DEV)
+        r = torch.tensor([1.0, -0.5, 2.0, 0.0, 3.0, 0.7, -1.0, 0.2], device=DEV)
+        is_mut = torch.tensor([False, False, True, False, False, True, False, False], device=DEV)
+        mask = torch.tensor([True, False, True, True, False, False, True, True], device=DEV)
+        loss_m, st_m = generator_losses(logp, logp_old, lprior, r, is_mut, beta=0.1, gen_mask=mask)
+        idx = mask.nonzero(as_tuple=True)[0]
+        loss_s, st_s = generator_losses(logp[idx], logp_old[idx], lprior[idx], r[idx], is_mut[idx], beta=0.1)
+        self.assertAlmostEqual(float(loss_m), float(loss_s), places=5)
+        self.assertAlmostEqual(st_m["gen/loss_pg"], st_s["gen/loss_pg"], places=5)
+        self.assertAlmostEqual(st_m["gen/loss_ei"], st_s["gen/loss_ei"], places=5)
+        self.assertEqual(st_m["gen/n_update"], 5)
+        g = torch.autograd.grad(loss_m, logp)[0]
+        self.assertTrue(torch.all(g[~mask] == 0))        # excluded programs get no gradient
+        loss_a, st_a = generator_losses(logp, logp_old, lprior, r, is_mut, beta=0.1)
+        self.assertNotAlmostEqual(float(loss_a), float(loss_m), places=3)
+        self.assertEqual(st_a["gen/n_update"], 8)
+
     def test_archive(self):
         a = EliteArchive(per_niche=2, decay=0.5, seed=0)
         self.assertFalse(a.add(b"+", 0.0, 0))
