@@ -26,7 +26,7 @@
 <text x="314.6" y="250.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="74.0" y1="236.0" x2="332.0" y2="236.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="203.0" y="266.0" font-size="11" fill="#52514e" text-anchor="middle">self-play round</text>
-<text transform="translate(28.0,171.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">bits per byte</text>
+<text transform="translate(28.0,171.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">bits per byte ↓</text>
 <clipPath id="c55431875"><rect x="68.0" y="100.0" width="270.0" height="142.0"/></clipPath>
 <g clip-path="url(#c55431875)">
 <path d="M85.7,117.2 L91.4,116.2 L97.2,117.0 L102.9,120.8 L108.6,122.4 L114.3,126.8 L120.1,133.0 L125.8,165.6 L131.5,190.6 L137.2,190.0 L142.9,203.5 L148.7,178.7 L154.4,190.7 L160.1,192.0 L165.8,219.9 L171.5,229.5 L177.3,227.5 L183.0,220.6 L188.7,222.1 L194.4,226.2 L200.1,227.3 L205.9,223.2 L211.6,227.3 L217.3,229.7 L223.0,230.1 L228.7,230.6 L234.5,224.6 L240.2,228.5 L245.9,229.2 L251.6,227.8 L257.3,228.0 L263.1,228.1 L268.8,227.8 L274.5,231.0 L280.2,231.4 L285.9,228.3 L291.7,189.1 L297.4,193.6 L303.1,209.3 L308.8,195.0 L314.6,191.8 L320.3,202.2" fill="none" stroke="#2a78d6" stroke-width="1.25" stroke-opacity="0.4" stroke-linejoin="round" stroke-linecap="round"/>
@@ -60,7 +60,7 @@
 <text x="660.6" y="250.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="420.0" y1="236.0" x2="678.0" y2="236.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="549.0" y="266.0" font-size="11" fill="#52514e" text-anchor="middle">self-play round</text>
-<text transform="translate(374.0,171.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">bits per byte</text>
+<text transform="translate(374.0,171.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">bits per byte ↓</text>
 <clipPath id="c50812444"><rect x="414.0" y="100.0" width="270.0" height="142.0"/></clipPath>
 <g clip-path="url(#c50812444)">
 <path d="M431.7,228.6 L437.4,202.0 L443.2,216.7 L448.9,225.4 L454.6,225.5 L460.3,225.4 L466.1,227.1 L471.8,226.6 L477.5,227.6 L483.2,228.7 L488.9,228.7 L494.7,229.0 L500.4,229.0 L506.1,220.2 L511.8,220.6 L517.5,229.4 L523.3,228.8 L529.0,229.0 L534.7,228.1 L540.4,229.7 L546.1,229.1 L551.9,229.7 L557.6,229.6 L563.3,229.6 L569.0,229.4 L574.7,229.6 L580.5,229.5 L586.2,229.8 L591.9,229.8 L597.6,229.4 L603.3,229.7 L609.1,229.6 L614.8,229.8 L620.5,229.7 L626.2,229.8 L631.9,229.5 L637.7,229.6 L643.4,229.7 L649.1,229.7 L654.8,229.7 L660.6,229.7 L666.3,229.3" fill="none" stroke="#2a78d6" stroke-width="1.25" stroke-opacity="0.4" stroke-linejoin="round" stroke-linecap="round"/>
@@ -96,7 +96,7 @@
 <text x="1006.8" y="250.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="766.0" y1="236.0" x2="1024.0" y2="236.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="895.0" y="266.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(720.0,171.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(720.0,171.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c50856973"><rect x="760.0" y="100.0" width="270.0" height="142.0"/></clipPath>
 <g clip-path="url(#c50856973)">
 <path d="M777.7,236.0 L806.4,236.0 L835.0,154.4 L863.6,127.5 L892.3,121.5 L920.9,118.5 L949.6,123.5 L978.2,131.5 L1006.8,127.5" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -158,7 +158,7 @@
 <text x="1352.8" y="250.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="1112.0" y1="236.0" x2="1370.0" y2="236.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="1241.0" y="266.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(1066.0,171.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(1066.0,171.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c36759609"><rect x="1106.0" y="100.0" width="270.0" height="142.0"/></clipPath>
 <g clip-path="url(#c36759609)">
 <path d="M1123.7,235.0 L1152.4,227.0 L1181.0,153.4 L1209.6,154.4 L1238.3,141.4 L1266.9,128.5 L1295.6,136.4 L1324.2,130.5 L1352.8,138.4" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -220,7 +220,7 @@
 <text x="314.8" y="492.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="74.0" y1="478.0" x2="332.0" y2="478.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="203.0" y="508.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(28.0,413.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(28.0,413.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c26532243"><rect x="68.0" y="342.0" width="270.0" height="142.0"/></clipPath>
 <g clip-path="url(#c26532243)">
 <path d="M85.7,478.0 L114.4,478.0 L143.0,478.0 L171.6,426.2 L200.3,384.4 L228.9,360.5 L257.6,378.4 L286.2,378.4 L314.8,434.2" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -282,7 +282,7 @@
 <text x="660.8" y="492.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="420.0" y1="478.0" x2="678.0" y2="478.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="549.0" y="508.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(374.0,413.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(374.0,413.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c93253801"><rect x="414.0" y="342.0" width="270.0" height="142.0"/></clipPath>
 <g clip-path="url(#c93253801)">
 <path d="M431.7,478.0 L460.4,453.1 L489.0,465.1 L517.6,449.1 L546.3,451.1 L574.9,446.1 L603.6,452.1 L632.2,447.1 L660.8,447.1" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -344,7 +344,7 @@
 <text x="1006.8" y="492.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="766.0" y1="478.0" x2="1024.0" y2="478.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="895.0" y="508.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(720.0,413.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(720.0,413.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c79771573"><rect x="760.0" y="342.0" width="270.0" height="142.0"/></clipPath>
 <g clip-path="url(#c79771573)">
 <path d="M777.7,478.0 L806.4,465.1 L835.0,464.1 L863.6,455.1 L892.3,444.1 L920.9,441.2 L949.6,448.1 L978.2,449.1 L1006.8,450.1" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -406,7 +406,7 @@
 <text x="1352.8" y="492.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="1112.0" y1="478.0" x2="1370.0" y2="478.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="1241.0" y="508.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(1066.0,413.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(1066.0,413.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c34340759"><rect x="1106.0" y="342.0" width="270.0" height="142.0"/></clipPath>
 <g clip-path="url(#c34340759)">
 <path d="M1123.7,478.0 L1152.4,478.0 L1181.0,477.0 L1209.6,478.0 L1238.3,478.0 L1266.9,478.0 L1295.6,478.0 L1324.2,477.0 L1352.8,477.0" fill="none" stroke="#2a78d6" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>

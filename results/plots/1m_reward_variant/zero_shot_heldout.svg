@@ -24,7 +24,7 @@
 <text x="444.9" y="300.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="74.0" y1="286.0" x2="472.0" y2="286.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="273.0" y="316.0" font-size="11" fill="#52514e" text-anchor="middle">self-play round</text>
-<text transform="translate(28.0,188.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">bits per byte</text>
+<text transform="translate(28.0,188.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">bits per byte ↓</text>
 <clipPath id="c65532727"><rect x="68.0" y="84.0" width="410.0" height="208.0"/></clipPath>
 <g clip-path="url(#c65532727)">
 <path d="M92.1,220.2 L101.1,206.4 L110.2,170.0 L119.2,213.7 L128.3,228.9 L137.3,235.9 L146.4,276.6 L155.4,270.4 L164.5,254.1 L173.5,238.5 L182.5,229.0 L191.6,242.7 L200.6,226.6 L209.7,206.7 L218.7,249.2 L227.8,233.6 L236.8,167.5 L245.9,250.0 L254.9,243.6 L264.0,196.3 L273.0,226.8 L282.0,238.9 L291.1,235.9 L300.1,256.6 L309.2,238.8 L318.2,231.2 L327.3,252.5 L336.3,277.1 L345.4,266.8 L354.4,255.5 L363.5,256.3 L372.5,260.0 L381.5,215.1 L390.6,222.4 L399.6,213.2 L408.7,221.7 L417.7,216.4 L426.8,188.5 L435.8,260.0 L444.9,197.4 L453.9,152.7" fill="none" stroke="#2a78d6" stroke-width="1.25" stroke-opacity="0.4" stroke-linejoin="round" stroke-linecap="round"/>
@@ -50,7 +50,7 @@
 <text x="930.9" y="300.0" font-size="10.5" fill="#898781" text-anchor="middle">4K</text>
 <line x1="560.0" y1="286.0" x2="958.0" y2="286.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="759.0" y="316.0" font-size="11" fill="#52514e" text-anchor="middle">self-play round</text>
-<text transform="translate(514.0,188.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">bits per byte</text>
+<text transform="translate(514.0,188.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">bits per byte ↓</text>
 <clipPath id="c97503252"><rect x="554.0" y="84.0" width="410.0" height="208.0"/></clipPath>
 <g clip-path="url(#c97503252)">
 <path d="M578.1,170.1 L587.1,160.6 L596.2,153.7 L605.2,166.5 L614.3,174.8 L623.3,211.2 L632.4,241.1 L641.4,245.3 L650.5,243.2 L659.5,221.5 L668.5,220.3 L677.6,215.2 L686.6,221.8 L695.7,206.0 L704.7,261.0 L713.8,248.6 L722.8,208.2 L731.9,254.4 L740.9,252.0 L750.0,245.1 L759.0,255.6 L768.0,254.7 L777.1,259.1 L786.1,247.3 L795.2,258.4 L804.2,234.0 L813.3,259.5 L822.3,276.6 L831.4,277.1 L840.4,261.7 L849.5,243.2 L858.5,274.9 L867.5,231.7 L876.6,264.3 L885.6,253.0 L894.7,257.6 L903.7,243.2 L912.8,242.8 L921.8,262.9 L930.9,263.0 L939.9,236.3" fill="none" stroke="#2a78d6" stroke-width="1.25" stroke-opacity="0.4" stroke-linejoin="round" stroke-linecap="round"/>

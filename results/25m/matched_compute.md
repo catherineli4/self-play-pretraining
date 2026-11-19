@@ -1,5 +1,7 @@
 # Compute-matched baselines (25m learner, fresh DCLM, one epoch)
 
+Arrows: ↓ lower is better, ↑ higher is better; training-dynamics quantities are descriptive and carry neither.
+
 Each scratch run trains the default init (std 0.02) on as many fresh DCLM tokens as the warm-started
 arm consumed in total: its synthetic tokens plus the 2B downstream budget. Same single-epoch protocol
 (constant LR, 200-step cosine decay at the end), WD 0.1, best of LR {1e-3, 3e-3} for the two small
@@ -7,7 +9,7 @@ budgets; the 36.4B run used LR 1e-3 only (4-GPU DDP, 4.9 h, 138,888 steps; curve
 `scratch_36.4B_fresh_dclm_history.jsonl`). The three curricula consumed 2B synthetic tokens, so their
 matched budget is 4B; the 4.1B run stands in for it. Full per-run table: `downstream_fresh_dclm_summary.md`.
 
-| Warm start | Synthetic tokens | Warm start + 2B fresh, bpb | Matched scratch budget | Scratch, bpb | Scratch minus warm |
+| Warm start | Synthetic tokens | Warm start + 2B fresh, bpb ↓ | Matched scratch budget | Scratch, bpb ↓ | Scratch minus warm ↑ |
 | --- | --- | --- | --- | --- | --- |
 | Self-play round 200 | 1.05B | 1.368 | 3.05B | 1.374 | +0.006 |
 | Self-play round 400 | 2.1B | 1.374 | 4.1B | 1.357 | -0.017 |

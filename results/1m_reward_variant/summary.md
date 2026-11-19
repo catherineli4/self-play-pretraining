@@ -1,5 +1,7 @@
 # Ablation: learning-progress reward without the AdamW step operator (1m learner, one seed)
 
+Arrows: ↓ lower is better, ↑ higher is better; training-dynamics quantities are descriptive and carry neither.
+
 `sp_1m_rawdelta_seed0`: the replication config and seed (`configs/replicate_1m.json`), 4096 rounds (half the
 replication; the learner LR is constant after the 100-round warmup, so this is a prefix of the full schedule), 8 GPUs,
 `--tangent_precond identity`. The reward tangent is theta_past - theta_e instead of P_e (theta_past - theta_e) with
@@ -9,7 +11,7 @@ rounds (checkpoints every 100 rounds, so round 4100 stands in for 4096).
 
 ## Warm-start value (fresh DCLM, one epoch, best of LR {3e-3, 1e-2} x WD {0, 0.1}; final bpb after the 200-step decay)
 
-| Warm start | Self-play rounds | 1B fresh tokens | 2B fresh tokens | Tokens to 1.75 bpb (2B run) |
+| Warm start | Self-play rounds | 1B fresh tokens ↓ | 2B fresh tokens ↓ | Tokens to 1.75 bpb (2B run) ↓ |
 | --- | --- | --- | --- | --- |
 | Scratch, std 0.02 | 0 | 1.804 | 1.751 | not reached |
 | Baseline round 2800 | 2800 | 1.714 | 1.687 | 943M |
@@ -28,14 +30,14 @@ Arithmetic and ICL (accuracy with 32 in-context examples) from the trainer's log
 
 | Metric | Baseline | Variant |
 | --- | --- | --- |
-| DCLM bpb, mean over rounds 3100-4100 | 7.48 | 7.70 |
-| DCLM bpb, best checkpoint up to round 4100 | 6.63 | 6.82 |
-| Metamath bpb, mean over rounds 3100-4100 | 6.33 | 6.57 |
-| Metamath bpb, best checkpoint up to round 4100 | 5.92 | 6.01 |
-| Arithmetic bpb at round 4000 (best up to 4100) | 0.82 (0.25) | 1.80 (0.79) |
-| ICL stack, 32 shots, round 4000 | 0.85 | 0.70 |
-| ICL associative recall, 32 shots | 0.77 | 0.34 |
-| ICL reverse, 32 shots | 0.34 | 0.00 |
+| DCLM bpb, mean over rounds 3100-4100 ↓ | 7.48 | 7.70 |
+| DCLM bpb, best checkpoint up to round 4100 ↓ | 6.63 | 6.82 |
+| Metamath bpb, mean over rounds 3100-4100 ↓ | 6.33 | 6.57 |
+| Metamath bpb, best checkpoint up to round 4100 ↓ | 5.92 | 6.01 |
+| Arithmetic bpb at round 4000 (best up to 4100) ↓ | 0.82 (0.25) | 1.80 (0.79) |
+| ICL stack, 32 shots, round 4000 ↑ | 0.85 | 0.70 |
+| ICL associative recall, 32 shots ↑ | 0.77 | 0.34 |
+| ICL reverse, 32 shots ↑ | 0.34 | 0.00 |
 
 ## Training dynamics (means over rounds 3800-4095)
 

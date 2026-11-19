@@ -1,5 +1,6 @@
 # Results (1m learner, one seed)
 
+In every table bits per byte and tokens-to-threshold are lower-is-better (↓) and accuracies higher-is-better (↑).
 Small summaries only; full logs, checkpoints and per-run histories are in
 `gs://cmu-gpucloud-catheri4/self-play-pretraining/` and in the Weights & Biases projects
 `self-play-pretraining`, `self-play-prepretraining-1m-dclm`, `self-play-prepretraining-1m-fresh`.

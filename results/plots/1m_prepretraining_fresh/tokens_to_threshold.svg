@@ -28,7 +28,7 @@
 <text x="480.7" y="320.0" font-size="10.5" fill="#898781" text-anchor="middle">2.4</text>
 <line x1="74.0" y1="306.0" x2="562.0" y2="306.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="318.0" y="336.0" font-size="11" fill="#52514e" text-anchor="middle">validation bpb threshold</text>
-<text transform="translate(28.0,199.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">fresh tokens to reach it</text>
+<text transform="translate(28.0,199.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">fresh tokens to reach it ↓</text>
 <clipPath id="c89997300"><rect x="68.0" y="86.0" width="500.0" height="226.0"/></clipPath>
 <g clip-path="url(#c89997300)">
 <path d="M539.8,291.0 L362.4,283.1 L244.1,238.4 L184.9,212.1 L125.8,101.7" fill="none" stroke="#898781" stroke-width="2.0" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>

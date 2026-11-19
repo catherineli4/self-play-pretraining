@@ -1,5 +1,7 @@
 # Ablation: learning-progress reward without the AdamW step operator (25m learner, full schedule, one seed)
 
+Arrows: ↓ lower is better, ↑ higher is better; training-dynamics quantities are descriptive and carry neither.
+
 `sp_25m_rawdelta_seed0`: the 25m replication config and seed (`configs/replicate_25m.json`, 6560 rounds, 34.4B
 synthetic tokens), 8 GPUs, `--tangent_precond identity`. The reward tangent is theta_past - theta_e instead of
 P_e (theta_past - theta_e) with P_e = lr / (sqrt(v_hat_e) + eps) (paper Eq. 2); rewards are z-scored across the
@@ -10,7 +12,7 @@ Wall clock 8.3 h at 4.45 s/round (baseline 9.2 h at 4.94 s/round on 7 GPUs). The
 
 ## Warm-start value (fresh DCLM, one epoch, best of LR {1e-3, 3e-3}, WD 0.1; final bpb after the 200-step decay)
 
-| Warm start | Self-play rounds | Synthetic tokens | 1B fresh tokens | 2B fresh tokens | Tokens to 1.45 bpb (2B run) |
+| Warm start | Self-play rounds | Synthetic tokens | 1B fresh tokens ↓ | 2B fresh tokens ↓ | Tokens to 1.45 bpb (2B run) ↓ |
 | --- | --- | --- | --- | --- | --- |
 | Scratch, std 0.02 | 0 | 0 | 1.444 | 1.388 | 1389M |
 | Baseline round 200 | 200 | 1.05B | 1.417 | 1.368 | 1075M |
@@ -32,23 +34,23 @@ Trainer evals every 50 rounds (first 256 records of each file, the same protocol
 
 | Metric | Baseline | Variant |
 | --- | --- | --- |
-| DCLM bpb, mean over rounds 5560-6559 | 5.99 | 6.01 |
-| DCLM bpb, best checkpoint | 5.55 (round 6450) | 5.53 (round 6559) |
-| DCLM bpb, last checkpoint | 5.86 | 5.53 |
-| Metamath bpb, mean over rounds 5560-6559 | 3.76 | 3.71 |
-| Metamath bpb, best checkpoint | 3.57 | 3.57 |
-| Metamath bpb, last checkpoint | 3.67 | 3.59 |
-| Arithmetic bpb, mean over rounds 5560-6559 | 0.18 | 0.08 |
-| ICL stack, 32 shots | 0.88 | 0.85 |
-| ICL associative recall, 32 shots | 0.85 | 0.89 |
-| ICL reverse, 32 shots | 0.83 | 0.96 |
-| ICL reverse, 8 shots | 0.38 | 0.90 |
-| ICL max / min, 32 shots | 0.25 / 0.26 | 0.25 / 0.26 |
-| ICL sum, 32 shots | 0.00 | 0.00 |
+| DCLM bpb, mean over rounds 5560-6559 ↓ | 5.99 | 6.01 |
+| DCLM bpb, best checkpoint ↓ | 5.55 (round 6450) | 5.53 (round 6559) |
+| DCLM bpb, last checkpoint ↓ | 5.86 | 5.53 |
+| Metamath bpb, mean over rounds 5560-6559 ↓ | 3.76 | 3.71 |
+| Metamath bpb, best checkpoint ↓ | 3.57 | 3.57 |
+| Metamath bpb, last checkpoint ↓ | 3.67 | 3.59 |
+| Arithmetic bpb, mean over rounds 5560-6559 ↓ | 0.18 | 0.08 |
+| ICL stack, 32 shots ↑ | 0.88 | 0.85 |
+| ICL associative recall, 32 shots ↑ | 0.85 | 0.89 |
+| ICL reverse, 32 shots ↑ | 0.83 | 0.96 |
+| ICL reverse, 8 shots ↑ | 0.38 | 0.90 |
+| ICL max / min, 32 shots ↑ | 0.25 / 0.26 | 0.25 / 0.26 |
+| ICL sum, 32 shots ↑ | 0.00 | 0.00 |
 
 Zero-shot bpb by 1000-round window (baseline / variant):
 
-| Rounds | DCLM | Metamath | Arithmetic |
+| Rounds | DCLM ↓ | Metamath ↓ | Arithmetic ↓ |
 | --- | --- | --- | --- |
 | 0-999 | 7.74 / 8.02 | 7.22 / 8.09 | 6.61 / 8.02 |
 | 1000-1999 | 7.03 / 7.51 | 4.89 / 5.56 | 0.33 / 1.83 |

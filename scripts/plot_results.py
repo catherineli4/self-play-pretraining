@@ -73,7 +73,7 @@ def skip(group, name, why):
 
 
 # ---------------------------------------------------------------- shared figure builders
-def eval_panel(fig, title, srcs, ylog=False, window=5, xlabel="self-play round", ylabel="bits per byte", ylim=None):
+def eval_panel(fig, title, srcs, ylog=False, window=5, xlabel="self-play round", ylabel="bits per byte ↓", ylim=None):
     """srcs: list of (label, xs, ys, colour, dash). Raw at 45% + centred moving average (window evals) in full."""
     p = fig.add(sc.Panel(title, xlabel, ylabel, ylog=ylog, ylim=ylim))
     for lab, xs, ys, col, dash in srcs:
@@ -106,7 +106,7 @@ DYN_KEYS = [
 
 def dynamics_fig(title, subtitle, runs, window=50, max_round=None, keys=DYN_KEYS):
     """runs: list of (label, rows, colour)."""
-    fig = sc.Figure(title, subtitle, ncols=4, panel_w=330, panel_h=230)
+    fig = sc.Figure(title, subtitle + "; descriptive statistics, no preferred direction (hence no arrow)", ncols=4, panel_w=330, panel_h=230)
     for key, ptitle, ylog in keys:
         p = fig.add(sc.Panel(ptitle, "round", "", ylog=ylog))
         for lab, rows, col in runs:
@@ -125,7 +125,7 @@ def icl_rounds_fig(title, subtitle, runs, max_round=None):
     """One panel per task; per run, accuracy at 32 shots (solid), 16 (dashed) and 8 (dotted)."""
     fig = sc.Figure(title, subtitle, ncols=3, panel_w=400, panel_h=240 + 40 * (len(runs) - 1))
     for t in ICL_TASKS:
-        p = fig.add(sc.Panel(ICL_NAMES[t], "round", "accuracy", ylim=(0, 1.02)))
+        p = fig.add(sc.Panel(ICL_NAMES[t], "round", "accuracy ↑", ylim=(0, 1.02)))
         for lab, rows, col in runs:
             for m, dash in ((32, None), (16, "7 4"), (8, "2 3")):
                 xs, ys = series([r for r in rows if f"icl/{t}/m{m}" in r], f"icl/{t}/m{m}", max_round)
@@ -138,7 +138,7 @@ def icl_shots_fig(title, subtitle, runs, rnd):
     fig = sc.Figure(title, subtitle, ncols=3, panel_w=400, panel_h=240)
     xf = lambda t: str(SHOTS[int(round(t))]) if abs(t - round(t)) < 1e-6 and 0 <= round(t) < len(SHOTS) else ""
     for t in ICL_TASKS:
-        p = fig.add(sc.Panel(ICL_NAMES[t], "in-context examples", "accuracy", ylim=(0, 1.02), xlim=(-0.3, 6.3), xfmt=xf))
+        p = fig.add(sc.Panel(ICL_NAMES[t], "in-context examples", "accuracy ↑", ylim=(0, 1.02), xlim=(-0.3, 6.3), xfmt=xf))
         for lab, rows, col in runs:
             br = by_round(rows)
             r = br.get(rnd)
@@ -149,7 +149,7 @@ def icl_shots_fig(title, subtitle, runs, rnd):
 
 def dots_fig(title, subtitle, rows, arms, labels, budgets=("1B", "2B"), xlim=None):
     fig = sc.Figure(title, subtitle, ncols=1, panel_w=560, panel_h=40 + 26 * len(arms))
-    p = fig.add(sc.Panel("", "final validation bpb (after the LR decay)", xlim=xlim, xfmt=lambda v: f"{v:.3f}"))
+    p = fig.add(sc.Panel("", "final validation bpb (after the LR decay) ↓", xlim=xlim, xfmt=lambda v: f"{v:.3f}"))
     for b, col in zip(budgets, (BLUE, ORANGE)):
         vals = [float(best_row(rows, b, a)["final"]) if best_row(rows, b, a) else None for a in arms]
         p.dots(labels, vals, label=f"{b} fresh tokens", color=col)
@@ -158,7 +158,7 @@ def dots_fig(title, subtitle, rows, arms, labels, budgets=("1B", "2B"), xlim=Non
 
 def curves_panel(fig, title, root, rows, budget, arms, ylim, frac_from=0.0, xfmt=sc.fmt_tokens):
     """arms: list of (arm, label, colour, dash). Best LR x WD config per arm; part of the epoch from frac_from."""
-    p = fig.add(sc.Panel(title, "fresh DCLM tokens", "validation bpb", ylim=ylim, xfmt=xfmt))
+    p = fig.add(sc.Panel(title, "fresh DCLM tokens", "validation bpb ↓", ylim=ylim, xfmt=xfmt))
     for arm, lab, col, dash in arms:
         r = best_row(rows, budget, arm)
         if not r:
@@ -176,7 +176,7 @@ def thresholds_fig(title, subtitle, rows, budget, arms, labels_cols):
     cols = [c for c in rows[0].keys() if re.fullmatch(r"to[0-9.]+_M", c)]
     thr = [float(c[2:-2]) for c in cols]
     fig = sc.Figure(title, subtitle, ncols=1, panel_w=560, panel_h=300)
-    p = fig.add(sc.Panel("", "validation bpb threshold", "fresh tokens to reach it", yfmt=sc.fmt_tokens))
+    p = fig.add(sc.Panel("", "validation bpb threshold", "fresh tokens to reach it ↓", yfmt=sc.fmt_tokens))
     for arm, lab, col, dash in arms:
         r = best_row(rows, budget, arm)
         if not r:
@@ -250,16 +250,16 @@ def group_1m_plateau():
         return min(c, key=lambda r: float(r["converged"]))
     order = sorted(settings, key=lambda s: float(best(s)["converged"]))
     fig = sc.Figure("1m plateau protocol: converged validation bpb by initialisation", "best of LR {1e-3, 3e-3, 1e-2} x WD {0, 0.1} per setting; lower is better", ncols=1, panel_w=560, panel_h=40 + 26 * len(order))
-    p = fig.add(sc.Panel("", "converged validation bpb", xfmt=lambda v: f"{v:.3f}"))
+    p = fig.add(sc.Panel("", "converged validation bpb ↓", xfmt=lambda v: f"{v:.3f}"))
     p.dots(order, [float(best(s)["converged"]) for s in order], color=BLUE)
     save(fig, g, "converged_bpb_by_setting.svg", "Converged bpb of each scratch initialisation setting and of the self-play warm starts, best config per setting.", desc)
     cfgs = sorted({(float(r["lr"]), float(r["wd"])) for r in rows})
     m = [[next((float(r["converged"]) for r in rows if f"{r['arm']} {r['setting']}".replace(" -", " final") == s and float(r["lr"]) == lr and float(r["wd"]) == wd), None) for lr, wd in cfgs] for s in order]
-    fig = sc.Figure("1m plateau protocol: converged bpb over the LR x WD grid", "darker = lower (better) bpb", ncols=1, panel_w=640, panel_h=50 + 30 * len(order))
+    fig = sc.Figure("1m plateau protocol: converged bpb over the LR x WD grid", "converged validation bpb ↓; darker = lower (better)", ncols=1, panel_w=640, panel_h=50 + 30 * len(order))
     fig.add(sc.Panel("", "learning rate, weight decay")).heatmap(m, order, [f"{lr:g}, {wd:g}" for lr, wd in cfgs])
     save(fig, g, "lr_wd_grid.svg", "Converged bpb for every setting and every LR x WD configuration.")
     fig = sc.Figure("1m plateau protocol: tokens to the plateau", "best config per setting (same rows as above)", ncols=1, panel_w=560, panel_h=40 + 26 * len(order))
-    p = fig.add(sc.Panel("", "DCLM tokens until the validation bpb plateaued", xfmt=sc.fmt_tokens))
+    p = fig.add(sc.Panel("", "DCLM tokens until the validation bpb plateaued ↓", xfmt=sc.fmt_tokens))
     p.dots(order, [float(best(s)["tokens_plateau_M"]) * 1e6 for s in order], color=BLUE)
     save(fig, g, "tokens_to_plateau.svg", "Tokens consumed before the plateau criterion fired, best config per setting.")
 
@@ -281,7 +281,7 @@ def group_1m_fresh(pp1m):
     labels = [l for _, l, *_ in ARMS_1M]
     save(dots_fig("1m fresh-token protocol: final bpb by warm start", "best LR x WD per arm and budget; lower is better", rows, arms, labels),
          g, "final_bpb_by_arm.svg", "Final validation bpb after 1B and 2B fresh DCLM tokens for scratch and self-play warm starts.", desc)
-    save(heat_fig("1m fresh-token protocol: sensitivity to LR and weight decay", "final validation bpb; darker = lower (better)", rows, ("1B", "2B"), arms, labels),
+    save(heat_fig("1m fresh-token protocol: sensitivity to LR and weight decay", "final validation bpb ↓; darker = lower (better)", rows, ("1B", "2B"), arms, labels),
          g, "lr_wd_sensitivity.svg", "Final bpb for every arm under each LR x WD configuration, per budget.")
     for b in ("2B", "1B"):
         if not sweep_curve(pp1m, best_row(rows, b, "warm_final")["name"])[0]:
@@ -327,7 +327,7 @@ def group_25m(runs, pp25m):
     ppt = {k: [r for r in jsonl(Path(pp25m) / "ppt" / k / "log.jsonl") if "val_bpb" in r] for k in ("declref", "nca", "kdyck")}
     if any(ppt.values()):
         fig = sc.Figure("25m curricula: pre-pretraining on each synthetic stream", "validation bpb on a held-out stream of the same curriculum (levels are not comparable across curricula); 2B tokens, LR 1e-3", ncols=1, panel_w=560, panel_h=300)
-        p = fig.add(sc.Panel("", "synthetic tokens", "validation bpb (log)", ylog=True, xfmt=sc.fmt_tokens))
+        p = fig.add(sc.Panel("", "synthetic tokens", "validation bpb ↓ (log)", ylog=True, xfmt=sc.fmt_tokens))
         for k, lab, col in (("declref", "DeclRef", ORANGE), ("nca", "NCA", YELLOW), ("kdyck", "k-Dyck", MAGENTA)):
             if ppt[k]:
                 p.line([r["tokens"] for r in ppt[k]], [r["val_bpb"] for r in ppt[k]], label=lab, color=col)
@@ -339,7 +339,7 @@ def group_25m(runs, pp25m):
     labels = [l for _, l, *_ in ARMS_25M]
     save(dots_fig("25m downstream: final bpb by warm start", "fresh DCLM, one epoch; best of LR {1e-3, 3e-3}, WD 0.1; lower is better", rows, arms, labels),
          g, "downstream_final_bpb.svg", "Final validation bpb after 1B and 2B fresh DCLM tokens for scratch, self-play checkpoints and the curricula.")
-    save(heat_fig("25m downstream: sensitivity to the learning rate", "final validation bpb; darker = lower (better)", rows, ("1B", "2B"), arms, labels),
+    save(heat_fig("25m downstream: sensitivity to the learning rate", "final validation bpb ↓; darker = lower (better)", rows, ("1B", "2B"), arms, labels),
          g, "downstream_lr_sensitivity.svg", "Final bpb per arm at LR 1e-3 and 3e-3.")
     sp_arms = [ARMS_25M[0], ARMS_25M[2], ARMS_25M[3], ARMS_25M[4]]
     cur_arms = [ARMS_25M[0], ARMS_25M[5], ARMS_25M[6], ARMS_25M[7]]
@@ -360,7 +360,7 @@ def group_25m(runs, pp25m):
     if all(sb.values()):
         tok = {"2B": 2e9, "3.05B": 3.05e9, "4.1B": 4.1e9, "36.4B": 36.4e9}
         fig = sc.Figure("25m compute-matched comparison", "x = all tokens the arm ever consumed (synthetic + 2B fresh DCLM); scratch runs consume fresh DCLM only", ncols=2, panel_w=470, panel_h=320)
-        p = fig.add(sc.Panel("Final bpb against total tokens", "total tokens consumed (log)", "final validation bpb", xlog=True, xfmt=sc.fmt_tokens, ylim=(1.27, 1.43)))
+        p = fig.add(sc.Panel("Final bpb against total tokens", "total tokens consumed (log)", "final validation bpb ↓", xlog=True, xfmt=sc.fmt_tokens, ylim=(1.27, 1.43)))
         p.line([tok[b] for b in sb], [float(sb[b]["final"]) for b in sb], label="scratch on fresh DCLM (2B, 3.05B, 4.1B, 36.4B)", color=GRAY, marker=True)
         spv = {a: best_row(rows, "2B", a) for a in ("sp_1B", "sp_2B", "sp_final")}
         p.points([3.05e9, 4.1e9, 36.4e9], [float(spv[a]["final"]) for a in ("sp_1B", "sp_2B", "sp_final")], label="self-play warm start + 2B fresh", color=BLUE, labels=["round 200", "round 400", "final"])
@@ -373,7 +373,7 @@ def group_25m(runs, pp25m):
                 p.points([4e9], [float(r["final"])], label=f"{lab} 2B + 2B fresh", color=col)
         hist = jsonl(RES / "25m" / "scratch_36.4B_fresh_dclm_history.jsonl")
         if hist:
-            p2 = fig.add(sc.Panel("Scratch, 36.4B fresh tokens: the training curve", "fresh DCLM tokens (log)", "validation bpb", xlog=True, xfmt=sc.fmt_tokens, ylim=(1.25, 1.8), xlim=(5e7, 4e10)))
+            p2 = fig.add(sc.Panel("Scratch, 36.4B fresh tokens: the training curve", "fresh DCLM tokens (log)", "validation bpb ↓", xlog=True, xfmt=sc.fmt_tokens, ylim=(1.25, 1.8), xlim=(5e7, 4e10)))
             p2.line([r["tokens"] for r in hist if r["tokens"] > 0], [r["val_bpb"] for r in hist if r["tokens"] > 0], label="scratch, LR 1e-3, constant then 200-step decay", color=GRAY)
             p2.hline(float(spv["sp_1B"]["final"]), color=BLUE, label=f"self-play round 200 + 2B fresh: {float(spv['sp_1B']['final']):.3f}")
             p2.hline(float(spv["sp_final"]["final"]), color=VIOLET, label=f"self-play final + 2B fresh: {float(spv['sp_final']['final']):.3f}")
@@ -401,7 +401,7 @@ def group_1m_reward_variant(runs, pp1m):
         eval_panel(fig, "Arithmetic (log)", [(l, *series(r, "eval/arithmetic_bpb", 4100), c, None) for l, r, c in rr], ylog=True)
         eval_panel(fig, "Random bytes", [(l, *series(r, "eval/random_bytes_bpb", 4100), c, None) for l, r, c in rr])
         for t in ICL_TASKS:
-            p = fig.add(sc.Panel(f"ICL: {ICL_NAMES[t]}, 32 shots", "round", "accuracy", ylim=(0, 1.02)))
+            p = fig.add(sc.Panel(f"ICL: {ICL_NAMES[t]}, 32 shots", "round", "accuracy ↑", ylim=(0, 1.02)))
             for l, r, c in rr:
                 xs, ys = series([x for x in r if f"icl/{t}/m32" in x], f"icl/{t}/m32", 4100)
                 p.line(xs, ys, label=l, color=c, marker=True)
@@ -415,7 +415,7 @@ def group_1m_reward_variant(runs, pp1m):
             ("warm_final", "baseline final (8192)", VIOLET, None), ("warm_rawdelta_r2800", "no step operator, round 2800", YELLOW, None), ("warm_rawdelta_r4096", "no step operator, round 4096", ORANGE, None)]
     if rows:
         fig = sc.Figure("1m reward ablation: warm-start value on fresh DCLM", "best LR x WD per arm; left: final bpb; right: last 60% of the epoch at each budget", ncols=3, panel_w=400, panel_h=300)
-        p = fig.add(sc.Panel("Final bpb", "final validation bpb", xfmt=lambda v: f"{v:.3f}"))
+        p = fig.add(sc.Panel("Final bpb", "final validation bpb ↓", xfmt=lambda v: f"{v:.3f}"))
         for b, col in (("1B", BLUE), ("2B", ORANGE)):
             p.dots([l for _, l, *_ in arms], [float(best_row(rows, b, a)["final"]) if best_row(rows, b, a) else None for a, *_ in arms], label=f"{b} fresh tokens", color=col)
         sub = [arms[0], arms[2], arms[5], arms[4]]
@@ -451,7 +451,7 @@ def group_25m_reward_variant(runs, pp25m):
             ("sp_2B", "baseline round 400", AQUA, None), ("sp_rawdelta_2B", "no step operator, round 400", AQUA, "6 4"),
             ("sp_final", "baseline final", VIOLET, None), ("sp_rawdelta_final", "no step operator, final", VIOLET, "6 4")]
     fig = sc.Figure("25m reward ablation: warm-start value on fresh DCLM", "best LR per arm, WD 0.1; left: final bpb; right: last 60% of the epoch (dashed = no step operator)", ncols=3, panel_w=400, panel_h=300)
-    p = fig.add(sc.Panel("Final bpb", "final validation bpb", xfmt=lambda v: f"{v:.3f}"))
+    p = fig.add(sc.Panel("Final bpb", "final validation bpb ↓", xfmt=lambda v: f"{v:.3f}"))
     for b, col in (("1B", BLUE), ("2B", ORANGE)):
         p.dots([l for _, l, *_ in arms], [float(best_row(rows, b, a)["final"]) if best_row(rows, b, a) else None for a, *_ in arms], label=f"{b} fresh tokens", color=col)
     sub = [arms[0], arms[1], arms[2], arms[5], arms[6]]
@@ -460,7 +460,7 @@ def group_25m_reward_variant(runs, pp25m):
         curves_panel(fig, "1B budget, last 60%", pp25m, rows, "1B", sub, (1.4, 1.56), frac_from=0.4)
     save(fig, g, "downstream.svg", "Warm-start value: final bpb per arm and the tail of the validation curves at both budgets.")
     fig = sc.Figure("25m: warm-start value against the self-play checkpoint", "final bpb after 1B / 2B fresh DCLM tokens, by the synthetic tokens the checkpoint had consumed (log); dashed lines = scratch", ncols=1, panel_w=560, panel_h=320)
-    p = fig.add(sc.Panel("", "synthetic tokens consumed by the checkpoint (log)", "final validation bpb", xlog=True, xfmt=sc.fmt_tokens))
+    p = fig.add(sc.Panel("", "synthetic tokens consumed by the checkpoint (log)", "final validation bpb ↓", xlog=True, xfmt=sc.fmt_tokens))
     xs = [1.05e9, 2.1e9, 34.4e9]
     for b, col in (("1B", BLUE), ("2B", ORANGE)):
         p.line(xs, [float(best_row(rows, b, a)["final"]) for a in ("sp_1B", "sp_2B", "sp_final")], label=f"baseline, {b} fresh", color=col, marker=True)
@@ -492,7 +492,7 @@ def group_1m_generator_variant(runs, pp1m):
         eval_panel(fig, "Arithmetic (log)", [(l, *series(r, "eval/arithmetic_bpb", 4100), c, None) for l, r, c in rr], ylog=True)
         eval_panel(fig, "Random bytes", [(l, *series(r, "eval/random_bytes_bpb", 4100), c, None) for l, r, c in rr])
         for t in ICL_TASKS:
-            p = fig.add(sc.Panel(f"ICL: {ICL_NAMES[t]}, 32 shots", "round", "accuracy", ylim=(0, 1.02)))
+            p = fig.add(sc.Panel(f"ICL: {ICL_NAMES[t]}, 32 shots", "round", "accuracy ↑", ylim=(0, 1.02)))
             for l, r, c in rr:
                 xs, ys = series([x for x in r if f"icl/{t}/m32" in x], f"icl/{t}/m32", 4100)
                 p.line(xs, ys, label=l, color=c, marker=True)
@@ -507,7 +507,7 @@ def group_1m_generator_variant(runs, pp1m):
             ("warm_genfresh_r2800", "generator on fresh only, round 2800", AQUA, "2 3"), ("warm_genfresh_r4096", "generator on fresh only, round 4096", AQUA, None)]
     if rows and best_row(rows, "2B", "warm_genfresh_r4096"):
         fig = sc.Figure("1m generator ablation: warm-start value on fresh DCLM", "best LR x WD per arm; left: final bpb; right: last 60% of the epoch at each budget", ncols=3, panel_w=400, panel_h=300)
-        p = fig.add(sc.Panel("Final bpb", "final validation bpb", xfmt=lambda v: f"{v:.3f}"))
+        p = fig.add(sc.Panel("Final bpb", "final validation bpb ↓", xfmt=lambda v: f"{v:.3f}"))
         for b, col in (("1B", BLUE), ("2B", ORANGE)):
             p.dots([l for _, l, *_ in arms], [float(best_row(rows, b, a)["final"]) if best_row(rows, b, a) else None for a, *_ in arms], label=f"{b} fresh tokens", color=col)
         sub = [arms[0], arms[2], arms[4], arms[6]]
@@ -528,7 +528,7 @@ def group_overview():
             w = min(float(best_row(rows, b, a)["final"]) for a in warm if best_row(rows, b, a))
             return s - w
         fig = sc.Figure("Self-play warm-start margin over scratch, by learner size", "scratch bpb minus the best self-play warm start (paper reward), fresh DCLM, best config per arm", ncols=1, panel_w=560, panel_h=300)
-        p = fig.add(sc.Panel("", "", "bpb improvement over scratch", yfmt=lambda v: f"{v:.3f}"))
+        p = fig.add(sc.Panel("", "", "bpb improvement over scratch ↑", yfmt=lambda v: f"{v:.3f}"))
         for i, (b, col) in enumerate((("1B", BLUE), ("2B", ORANGE))):
             p.bars(["1m learner", "25m learner"], [margin(r1, ("scratch_std0.02", "scratch_std0.005"), ("warm_final", "warm_r2800", "warm_r4100"), b),
                                                    margin(r25, ("scratch_std0.02", "scratch_std0.005"), ("sp_1B", "sp_2B", "sp_final"), b)], label=f"{b} fresh tokens", color=col, group=(i, 2), value_labels=True)
@@ -538,7 +538,7 @@ def group_overview():
     if e1 and e25:
         fig = sc.Figure("Zero-shot transfer against synthetic tokens, 1m and 25m self-play", "first 256 records of each file; thin = raw, thick = 5-checkpoint moving average", ncols=2, panel_w=470)
         for key, name in (("eval/dclm_bpb", "DCLM"), ("eval/metamath_bpb", "Metamath")):
-            p = fig.add(sc.Panel(name, "synthetic tokens (log)", "bits per byte", xlog=True, xfmt=sc.fmt_tokens))
+            p = fig.add(sc.Panel(name, "synthetic tokens (log)", "bits per byte ↓", xlog=True, xfmt=sc.fmt_tokens))
             for lab, rows, col in (("1m learner", e1, BLUE), ("25m learner", e25, ORANGE)):
                 xs = [r["tokens"] for r in rows if key in r and r["tokens"] > 0]
                 ys = [r[key] for r in rows if key in r and r["tokens"] > 0]
@@ -550,10 +550,10 @@ def group_overview():
 def write_index(out):
     out = Path(out)
     order = ["overview", "1m_replication", "1m_prepretraining_plateau", "1m_prepretraining_fresh", "25m_study", "1m_reward_variant", "25m_reward_variant", "1m_generator_variant"]
-    md = ["# Plots", "", "Generated by `scripts/plot_results.py` from the files in `results/` and the local run logs. SVG, one file per figure, grouped by experiment.", ""]
+    md = ["# Plots", "", "Generated by `scripts/plot_results.py` from the files in `results/` and the local run logs. SVG, one file per figure, grouped by experiment.", "", "Axis labels carry ↓ when lower is better (bits per byte, tokens to a threshold) and ↑ when higher is better (accuracy, improvement over scratch). The training-dynamics panels are descriptive and carry neither.", ""]
     html = ["<!doctype html><meta charset='utf-8'><title>self-play pretraining: plots</title>",
             "<style>body{font-family:system-ui,sans-serif;max-width:1500px;margin:24px auto;padding:0 16px;color:#0b0b0b;background:#f9f9f7}h2{margin-top:40px}figure{margin:16px 0}figcaption{color:#52514e;font-size:14px;margin-top:4px}img{max-width:100%;background:#fcfcfb}</style>",
-            "<h1>Plots</h1>"]
+            "<h1>Plots</h1><p>Axis labels carry ↓ when lower is better (bits per byte, tokens to a threshold) and ↑ when higher is better (accuracy, improvement over scratch). The training-dynamics panels are descriptive and carry neither.</p>"]
     for grp in order + [k for k in GROUPS if k not in order]:
         figs = [(f, c) for gg, f, c in FIGS if gg == grp]
         if not figs:

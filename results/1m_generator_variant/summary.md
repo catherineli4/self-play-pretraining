@@ -1,5 +1,7 @@
 # Ablation: generator updated on its own fresh samples only (1m learner, one seed)
 
+Arrows: ↓ lower is better, ↑ higher is better; training-dynamics quantities are descriptive and carry neither.
+
 `sp_1m_genfresh_seed0`: the replication config and seed (`configs/replicate_1m.json`), 4096 rounds, 8 GPUs, `--gen_update fresh`.
 In the paper's setting the round pool is 896 fresh samples + 128 mutations of archive programs + 256 programs replayed
 from the bank, and the generator is updated on all of it: policy gradient on fresh + replayed rows (the replayed rows carry
@@ -13,7 +15,7 @@ Wall clock 52 min at 0.74 s/round. Plots: `../plots/1m_generator_variant/`.
 
 ## Warm-start value (fresh DCLM, one epoch, best of LR {3e-3, 1e-2} x WD {0, 0.1}; final bpb after the 200-step decay)
 
-| Warm start | Self-play rounds | 1B fresh tokens | 2B fresh tokens | Tokens to 1.75 bpb (2B run) |
+| Warm start | Self-play rounds | 1B fresh tokens ↓ | 2B fresh tokens ↓ | Tokens to 1.75 bpb (2B run) ↓ |
 | --- | --- | --- | --- | --- |
 | Scratch, std 0.02 | 0 | 1.804 | 1.751 | not reached |
 | Baseline round 2800 | 2800 | 1.714 | 1.687 | 943M |
@@ -29,16 +31,16 @@ Full per-run table: `../1m_prepretraining_fresh/summary.md` (arms `warm_genfresh
 
 | Metric | Baseline | No step operator | Generator on fresh only |
 | --- | --- | --- | --- |
-| DCLM bpb (held out), mean over rounds 3100-4100 | 7.48 | 7.70 | 7.25 |
-| DCLM bpb (held out), best checkpoint | 6.63 | 6.82 | 6.43 |
-| Metamath bpb (held out), mean over rounds 3100-4100 | 6.33 | 6.57 | 6.55 |
-| Metamath bpb (held out), best checkpoint | 5.92 | 6.01 | 6.06 |
-| Arithmetic bpb (trainer eval), mean over rounds 3100-4100 | 0.51 | 1.53 | 1.70 |
-| Arithmetic bpb, best checkpoint | 0.25 | 0.79 | 0.79 |
-| ICL stack, 32 shots, round 4000 (best) | 0.85 (0.92) | 0.70 (0.78) | 0.77 (0.77) |
-| ICL associative recall, 32 shots, round 4000 (best) | 0.77 (0.84) | 0.34 (0.51) | 0.30 (0.44) |
-| ICL reverse, 32 shots, round 4000 (best) | 0.34 (0.92) | 0.00 (0.01) | 0.48 (0.96) |
-| ICL max / min, 32 shots, round 4000 | 0.24 / 0.22 | 0.12 / 0.13 | 0.20 / 0.20 |
+| DCLM bpb (held out), mean over rounds 3100-4100 ↓ | 7.48 | 7.70 | 7.25 |
+| DCLM bpb (held out), best checkpoint ↓ | 6.63 | 6.82 | 6.43 |
+| Metamath bpb (held out), mean over rounds 3100-4100 ↓ | 6.33 | 6.57 | 6.55 |
+| Metamath bpb (held out), best checkpoint ↓ | 5.92 | 6.01 | 6.06 |
+| Arithmetic bpb (trainer eval), mean over rounds 3100-4100 ↓ | 0.51 | 1.53 | 1.70 |
+| Arithmetic bpb, best checkpoint ↓ | 0.25 | 0.79 | 0.79 |
+| ICL stack, 32 shots, round 4000 (best) ↑ | 0.85 (0.92) | 0.70 (0.78) | 0.77 (0.77) |
+| ICL associative recall, 32 shots, round 4000 (best) ↑ | 0.77 (0.84) | 0.34 (0.51) | 0.30 (0.44) |
+| ICL reverse, 32 shots, round 4000 (best) ↑ | 0.34 (0.92) | 0.00 (0.01) | 0.48 (0.96) |
+| ICL max / min, 32 shots, round 4000 ↑ | 0.24 / 0.22 | 0.12 / 0.13 | 0.20 / 0.20 |
 
 ## Training dynamics (means over rounds 3800-4095)
 

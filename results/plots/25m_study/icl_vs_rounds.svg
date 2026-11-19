@@ -27,7 +27,7 @@
 <text x="361.7" y="260.0" font-size="10.5" fill="#898781" text-anchor="middle">6K</text>
 <line x1="74.0" y1="246.0" x2="402.0" y2="246.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="238.0" y="276.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(28.0,168.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(28.0,168.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c63113384"><rect x="68.0" y="84.0" width="340.0" height="168.0"/></clipPath>
 <g clip-path="url(#c63113384)">
 <path d="M88.9,246.0 L111.6,246.0 L134.4,142.0 L157.1,136.1 L179.8,125.3 L202.6,150.4 L225.3,137.3 L248.0,126.5 L270.8,134.9 L293.5,120.5 L316.2,113.4 L338.9,113.4 L361.7,109.8 L384.4,109.8 L387.1,107.4" fill="none" stroke="#2a78d6" stroke-width="2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -104,7 +104,7 @@
 <text x="777.7" y="260.0" font-size="10.5" fill="#898781" text-anchor="middle">6K</text>
 <line x1="490.0" y1="246.0" x2="818.0" y2="246.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="654.0" y="276.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(444.0,168.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(444.0,168.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c82594416"><rect x="484.0" y="84.0" width="340.0" height="168.0"/></clipPath>
 <g clip-path="url(#c82594416)">
 <path d="M504.9,246.0 L527.6,241.2 L550.4,142.0 L573.1,180.3 L595.8,146.8 L618.6,180.3 L641.3,183.9 L664.0,131.3 L686.8,115.8 L709.5,120.5 L732.2,115.8 L754.9,115.8 L777.7,125.3 L800.4,111.0 L803.1,112.2" fill="none" stroke="#2a78d6" stroke-width="2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -181,7 +181,7 @@
 <text x="1193.7" y="260.0" font-size="10.5" fill="#898781" text-anchor="middle">6K</text>
 <line x1="906.0" y1="246.0" x2="1234.0" y2="246.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="1070.0" y="276.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(860.0,168.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(860.0,168.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c57613816"><rect x="900.0" y="84.0" width="340.0" height="168.0"/></clipPath>
 <g clip-path="url(#c57613816)">
 <path d="M920.9,246.0 L943.6,246.0 L966.4,246.0 L989.1,237.6 L1011.8,158.8 L1034.6,182.7 L1057.3,193.4 L1080.0,174.3 L1102.8,167.1 L1125.5,131.3 L1148.2,108.6 L1170.9,130.1 L1193.7,119.3 L1216.4,118.2 L1219.1,121.7" fill="none" stroke="#2a78d6" stroke-width="2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -258,7 +258,7 @@
 <text x="361.7" y="512.0" font-size="10.5" fill="#898781" text-anchor="middle">6K</text>
 <line x1="74.0" y1="498.0" x2="402.0" y2="498.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="238.0" y="528.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(28.0,420.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(28.0,420.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c53414278"><rect x="68.0" y="336.0" width="340.0" height="168.0"/></clipPath>
 <g clip-path="url(#c53414278)">
 <path d="M88.9,498.0 L111.6,496.8 L134.4,495.6 L157.1,455.0 L179.8,451.4 L202.6,462.2 L225.3,465.7 L248.0,459.8 L270.8,464.5 L293.5,457.4 L316.2,459.8 L338.9,458.6 L361.7,459.8 L384.4,457.4 L387.1,466.9" fill="none" stroke="#2a78d6" stroke-width="2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -335,7 +335,7 @@
 <text x="777.7" y="512.0" font-size="10.5" fill="#898781" text-anchor="middle">6K</text>
 <line x1="490.0" y1="498.0" x2="818.0" y2="498.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="654.0" y="528.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(444.0,420.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(444.0,420.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c29106409"><rect x="484.0" y="336.0" width="340.0" height="168.0"/></clipPath>
 <g clip-path="url(#c29106409)">
 <path d="M504.9,498.0 L527.6,495.6 L550.4,493.2 L573.1,461.0 L595.8,451.4 L618.6,459.8 L641.3,452.6 L664.0,452.6 L686.8,456.2 L709.5,461.0 L732.2,461.0 L754.9,459.8 L777.7,459.8 L800.4,455.0 L803.1,457.4" fill="none" stroke="#2a78d6" stroke-width="2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
@@ -412,7 +412,7 @@
 <text x="1193.7" y="512.0" font-size="10.5" fill="#898781" text-anchor="middle">6K</text>
 <line x1="906.0" y1="498.0" x2="1234.0" y2="498.0" stroke="#c3c2b7" stroke-width="1"/>
 <text x="1070.0" y="528.0" font-size="11" fill="#52514e" text-anchor="middle">round</text>
-<text transform="translate(860.0,420.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy</text>
+<text transform="translate(860.0,420.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">accuracy ↑</text>
 <clipPath id="c43281974"><rect x="900.0" y="336.0" width="340.0" height="168.0"/></clipPath>
 <g clip-path="url(#c43281974)">
 <path d="M920.9,498.0 L943.6,498.0 L966.4,498.0 L989.1,498.0 L1011.8,493.2 L1034.6,498.0 L1057.3,496.8 L1080.0,498.0 L1102.8,496.8 L1125.5,498.0 L1148.2,498.0 L1170.9,498.0 L1193.7,498.0 L1216.4,498.0 L1219.1,496.8" fill="none" stroke="#2a78d6" stroke-width="2" stroke-opacity="1.0" stroke-linejoin="round" stroke-linecap="round"/>
