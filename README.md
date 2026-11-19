@@ -149,3 +149,7 @@ plain text have download helpers. Epiplexity (Sec. 3.1) is not implemented.
   dkms for the running kernel, conda env with torch 2.8, data and checkpoints from GCS). Everything durable
   is mirrored to `gs://cmu-gpucloud-catheri4/self-play-pretraining/` (checkpoints every 100 rounds, logs,
   data, sweep results), so instances are disposable.
+- `--mut_to_bank 0`: mutated programs are not added to the replay bank (replay is on-policy). `--gen_update no_mut`:
+  this round's mutations are left out of both generator losses (they still train the learner).
+  `scripts/run_mut_variants_1m.sh` chains four mutation variants at 1m (no banking of mutants; mutants for the learner
+  only; `--mut_frac` 0.25 and 0.0625), each through `scripts/run_mut_variant_1m.sh` (`TAG`/`EXTRA` env vars).

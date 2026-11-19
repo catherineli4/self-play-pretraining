@@ -8,13 +8,16 @@
 #   2. fresh-DCLM single-epoch warm-start comparison (1B/2B, LR {3e-3,1e-2} x WD {0,0.1}) of its round-2800 and
 #      final checkpoints, written into the existing pp1m-fresh sweep dir (baseline arms already there)
 #      so collect_fresh.py shows every arm (scratch, warm_*, warm_rawdelta_*, warm_genfresh_*, warm_nomut_*) in one table
+# Other variants: TAG=<name> EXTRA="<train.py flags>" (run name sp_1m_<TAG>_seed0, sweep arms warm_<TAG>_r2800/r4096);
+# scripts/run_mut_variants_1m.sh chains several.
 # Launch: setsid nohup bash scripts/run_mut_variant_1m.sh > /mnt/localssd/spp-runs/run_mut_variant_1m.out 2>&1 < /dev/null &
 set -uo pipefail
 cd "$(dirname "$0")/.."
 PY=${PY:-/home/catherine/miniconda3/envs/optim-study/bin/python}
 D=${D:-/mnt/localssd/spp-data}; R=${R:-/mnt/localssd/spp-runs}; PP=${PP:-/mnt/localssd/spp-pp1m-fresh}
 GCS=${GCS:-gs://cmu-gpucloud-catheri4/self-play-pretraining}
-NAME=${NAME:-sp_1m_nomut_seed0}; SP="$R/$NAME"; ROUNDS=${ROUNDS:-4096}
+TAG=${TAG:-nomut}; EXTRA=${EXTRA:---mut_frac 0}
+NAME=${NAME:-sp_1m_${TAG}_seed0}; SP="$R/$NAME"; ROUNDS=${ROUNDS:-4096}
 FINAL="$SP/models_round_$(printf '%06d' "$ROUNDS").pt"
 GPUS=${GPUS:-0,1,2,3,4,5,6,7}; NPROC=$(echo "$GPUS" | tr ',' '\n' | grep -c .)
 export TRITON_CACHE_DIR=/mnt/localssd/triton-cache WANDB_CACHE_DIR=/mnt/localssd/wandb-cache WANDB_DATA_DIR=/mnt/localssd/wandb-data WANDB_CONFIG_DIR=/mnt/localssd/wandb-config
@@ -30,9 +33,9 @@ if [ ! -f "$FINAL" ]; then
   if running "$PAT"; then
     log "attaching to the running self-play $NAME"
   else
-    log "launching self-play $NAME on GPUs $GPUS ($NPROC procs), mut_frac=0, rounds=$ROUNDS"
+    log "launching self-play $NAME on GPUs $GPUS ($NPROC procs), $EXTRA, rounds=$ROUNDS"
     CUDA_VISIBLE_DEVICES=$GPUS setsid nohup "$PY" -m torch.distributed.run --standalone --nproc_per_node "$NPROC" scripts/train.py \
-      --config configs/replicate_1m.json --rounds "$ROUNDS" --data selfplay --seed 0 --out_dir "$SP" --resume auto --mut_frac 0 \
+      --config configs/replicate_1m.json --rounds "$ROUNDS" --data selfplay --seed 0 --out_dir "$SP" --resume auto $EXTRA \
       --eval metamath="$D/metamath.bin" --eval dclm="$D/dclm.bin" \
       --wandb_project self-play-pretraining --wandb_name "$NAME" --gcs_path "$GCS" >> "$R/$NAME.out" 2>&1 < /dev/null &
     sleep 10
@@ -45,8 +48,8 @@ fi
 log "self-play done; fresh-DCLM warm-start sweep (variant r2800 + r$ROUNDS) on GPUs $GPUS"
 ( while true; do sleep 600; gcloud storage rsync -r "$PP" "$GCS/pp1m-fresh" > /dev/null 2>&1; done ) & SYNC=$!
 "$PY" scripts/sweep_fresh.py --corpus "$D/dclm2b.bin" --val_corpus "$D/dclm_val.bin" --out_root "$PP" --gpus "$GPUS" --scratch_stds "" \
-  --arm "warm_nomut_r${ROUNDS}=$FINAL" --arm "warm_nomut_r2800=$SP/models_round_002800.pt" \
-  --wandb_project self-play-prepretraining-1m-fresh > "$PP/sweep_nomut.out" 2>&1
+  --arm "warm_${TAG}_r${ROUNDS}=$FINAL" --arm "warm_${TAG}_r2800=$SP/models_round_002800.pt" \
+  --wandb_project self-play-prepretraining-1m-fresh > "$PP/sweep_${TAG}.out" 2>&1
 log "sweep done (rc $?)"
 "$PY" scripts/collect_fresh.py "$PP" --csv "$PP/results.csv" > "$PP/summary.md" 2>&1
 kill $SYNC 2>/dev/null

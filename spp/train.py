@@ -75,7 +75,8 @@ class TrainConfig:
     gen_lr_ratio: float = 1.0
     beta_kl: float = 0.05
     lambda_ei: float = 1.0
-    gen_update: str = "all"         # all: PG on fresh+replay, EI on the whole pool (paper) | fresh: both losses on this round's fresh samples only (no fine-tuning on replayed/mutated programs)
+    gen_update: str = "all"         # all: PG on fresh+replay, EI on the whole pool (paper) | fresh: both losses on this round's fresh samples only (no fine-tuning on replayed/mutated programs) | no_mut: both losses on everything except this round's mutations (mutants feed the learner, not the generator)
+    mut_to_bank: int = 1            # 1: mutated programs enter the replay bank (paper) | 0: only fresh samples are banked, so replay is on-policy
     rho_clip: float = 20.0
     reward_variant: str = "abs"     # abs | signed | negate | shuffle | loss_delta
     lookback: str = "half"          # half: floor(e/2) | last_step: e-1
@@ -427,6 +428,8 @@ class SelfPlayTrainer:
         lprior = log_prior(bodies, self.device)
         if cfg.gen_update == "fresh":
             gen_mask = torch.tensor([p.source == "fresh" for p in pool], device=self.device)
+        elif cfg.gen_update == "no_mut":
+            gen_mask = ~is_mut
         elif cfg.gen_update == "all":
             gen_mask = None
         else:
@@ -490,7 +493,7 @@ class SelfPlayTrainer:
         for p, lp in zip(pool, logp_now.tolist()):
             if p.source == "fresh":
                 new_programs.append(p)
-            elif p.source == "mut":
+            elif p.source == "mut" and cfg.mut_to_bank:
                 new_programs.append(Program(p.body, lp, e, "mut"))
         self.bank.add(new_programs)
         self.lookback.save(e + 1, self.params())
